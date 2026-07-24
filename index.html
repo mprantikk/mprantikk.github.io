@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MD MASUD PARVEJ | Data Analytics & Growth Operations Leader</title>
 
-    <!-- SEO & OPEN GRAPH THUMBNAIL META TAGS FOR LINKEDIN & SOCIAL MEDIA -->
+    <!-- OPEN GRAPH THUMBNAIL META TAGS FOR LINKEDIN & SOCIAL MEDIA -->
     <meta name="description" content="Data Analytics Leader specializing in revenue cycle management, automated benchmarking, predictive intelligence, and operational workflow efficiency.">
     <meta name="author" content="Md Masud Parvej">
     
@@ -25,16 +25,12 @@
             --bg-color: #060913;
             --card-bg: rgba(15, 23, 42, 0.75);
             --card-border: rgba(255, 255, 255, 0.08);
-            --card-border-hover: rgba(99, 102, 241, 0.4);
             --primary-accent: #6366f1;
-            --primary-hover: #4f46e5;
             --secondary-accent: #06b6d4;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --gradient-1: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
             --glow: rgba(99, 102, 241, 0.18);
-            /* New accent color derived from reference image_10.png */
-            --ref-orange: #f97316; 
         }
 
         * {
@@ -111,7 +107,7 @@
             color: var(--text-main);
         }
 
-        /* --- HERO SECTION & MODERN PORTRAIT LAYOUT --- */
+        /* --- HERO SECTION & MODERN ASYMMETRICAL LAYOUT --- */
         #hero {
             min-height: 92vh;
             display: flex;
@@ -119,13 +115,6 @@
             padding-top: 120px;
             padding-bottom: 4rem;
             position: relative;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 4rem;
-            align-items: center;
         }
 
         .hero-glow {
@@ -140,7 +129,14 @@
             pointer-events: none;
         }
 
-        /* AESTHETIC PORTRAIT PLACEMENT WITH FLOATING ORANGE GLOW (Matches image_10.png) */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr; /* Desktop asymmetry */
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* FIX: Modern Portrait Section with Glowing Ring */
         .portrait-wrapper {
             position: relative;
             display: flex;
@@ -150,43 +146,41 @@
 
         .portrait-section {
             position: relative;
-            width: 480px; /* Base container width */
+            width: 480px;
             display: flex;
             justify-content: center;
             align-items: flex-end; /* Cutout sits at bottom of area */
-            border-radius: 50%; /* Used ONLY for the background glow shape */
-            overflow: visible; /* CRITICAL: Cutout overlaps the background area */
+            border-radius: 50%; /* Used ONLY for the background shape */
+            overflow: visible; /* Needed for cutout to overlap */
         }
 
-        /* FLOATING GLOWING RING (Behind Cutout - Matches reference image_10.png) */
+        /* NEON GLOW RING (Behind Cutout - fixed position) */
         .portrait-section::before {
             content: '';
             position: absolute;
             top: -20px; left: -20px; right: -20px; bottom: -20px;
             border-radius: 50%;
             padding: 4px; /* Thickness of glowing ring */
-            /* Subtle inner background like in reference */
-            background: rgba(15, 23, 42, 0.2);
+            background: linear-gradient(135deg, var(--secondary-accent), var(--primary-accent)); /* Reference glow color mix */
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
-            /* Reference glowing orange color with blur and diffusion */
-            border: 4px solid var(--ref-orange);
-            box-shadow: 0 0 35px rgba(249, 115, 22, 0.5), 0 0 15px rgba(249, 115, 22, 0.3);
+            border: 4px solid var(--secondary-accent);
+            box-shadow: 0 0 35px rgba(6, 182, 212, 0.4), 0 0 15px rgba(99, 102, 241, 0.3);
             pointer-events: none;
             z-index: 1; /* Sits below the cutout */
         }
 
-        .portrait-img-cutout {
-            width: 100%; /* Spans the container width */
-            height: auto;
+        .profile-img-cutout {
+            height: 105%; /* Sits higher and larger within glowing ring */
+            width: auto;
             position: relative;
-            bottom: -5px; /* Sits slightly lower for overlap */
+            bottom: -5px; /* Sits lower for perfect alignment */
             display: block;
             object-fit: contain;
+            transform: scale(1.1); /* Cleanup scaling */
             object-position: center bottom;
-            transform: scale(1.15); /* CRITICAL: Portrait cutout overlaps the glow area */
-            z-index: 10; /* Sits above the glow ring */
+            z-index: 10; /* Sits above the glowing ring */
         }
 
         .badge {
@@ -308,7 +302,7 @@
         }
 
         .btn-primary:hover {
-            background: var(--primary-hover);
+            background: #4f46e5;
             transform: translateY(-2px);
             box-shadow: 0 6px 24px rgba(99, 102, 241, 0.5);
         }
@@ -393,7 +387,7 @@
         }
 
         .card:hover {
-            border-color: var(--card-border-hover);
+            border-color: rgba(99, 102, 241, 0.4);
             transform: translateY(-4px);
         }
 
@@ -426,7 +420,7 @@
 
         /* --- RESEARCH / PUBLICATION STYLING --- */
         .publication-card {
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(8, 12, 20, 0.95) 100%);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(11, 15, 25, 0.9) 100%);
             border: 1px solid rgba(99, 102, 241, 0.3);
             border-radius: 20px;
             padding: 2.5rem;
@@ -570,9 +564,6 @@
             .portrait-section {
                 width: 320px;
             }
-            .portrait-img-cutout {
-                transform: scale(1.1); /* Slightly reduce scaling on tablet */
-            }
             .hero-actions, .cta-main, .cta-quick {
                 justify-content: center;
             }
@@ -612,7 +603,7 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION WITH ASYMMETRICAL PORTRAIT LAYOUT AND ORANGE GLOW EFFECT -->
+    <!-- HERO SECTION -->
     <section id="hero">
         <div class="container">
             <div class="hero-grid">
@@ -653,11 +644,11 @@
                     </div>
                 </div>
 
-                <!-- RIGHT FLOATING PORTRAIT WITH FLOATING ORANGE GLOW (Matches Reference image_10.png) -->
+                <!-- RIGHT CIRCULAR PORTRAIT (Fixed Alignment and Glow Ring) -->
                 <div class="portrait-wrapper">
                     <div class="portrait-section">
                         <!-- Points strictly to masud.png (transparent cutout) on GitHub -->
-                        <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="portrait-img-cutout">
+                        <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="profile-img-cutout">
                     </div>
                 </div>
 
