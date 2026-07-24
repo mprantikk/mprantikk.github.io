@@ -12,8 +12,8 @@
     <!-- FACEBOOK, LINKEDIN & OPEN GRAPH PREVIEW META TAGS -->
     <meta property="og:title" content="MD MASUD PARVEJ | Data Analytics & Growth Operations Leader">
     <meta property="og:description" content="Explore my portfolio featuring Revenue Cycle Analytics, SQL engineering pipelines, and the Insight Quality Evaluation (IQE) Research Framework.">
-    <!-- Pointed directly to masud.png to fix Facebook's Content Type Error -->
     <meta property="og:image" content="https://mprantikk.github.io/masud.png">
+    <meta property="og:image:secure_url" content="https://mprantikk.github.io/masud.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -21,10 +21,10 @@
     <meta property="og:type" content="website">
     <meta property="fb:app_id" content="966242223397117">
 
-    <!-- TWITTER CARD META TAGS -->
+    <!-- TWITTER CARD META TAGS (NOW MATCHED WITH OG TAGS) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MD MASUD PARVEJ | Data Analytics Portfolio">
-    <meta name="twitter:description" content="Explore data engineering, RCM analytics, and AI evaluation research.">
+    <meta name="twitter:title" content="MD MASUD PARVEJ | Data Analytics & Growth Operations Leader">
+    <meta name="twitter:description" content="Explore my portfolio featuring Revenue Cycle Analytics, SQL engineering pipelines, and the Insight Quality Evaluation (IQE) Research Framework.">
     <meta name="twitter:image" content="https://mprantikk.github.io/masud.png">
 
     <!-- FONTS -->
@@ -148,7 +148,6 @@
             align-items: center;
         }
 
-        /* CLEAN PORTRAIT AREA WITH BOTTOM FADE */
         .portrait-wrapper {
             position: relative;
             display: flex;
@@ -170,8 +169,6 @@
             display: block;
             object-fit: contain;
             object-position: center bottom;
-
-            /* Mask gradient fades the bottom 30% smoothly to transparent */
             -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
         }
@@ -225,7 +222,6 @@
             margin-bottom: 2rem;
         }
 
-        /* HERO ACTION BUTTONS */
         .hero-actions {
             display: flex;
             flex-direction: column;
@@ -313,7 +309,6 @@
             background: rgba(30, 41, 59, 0.8);
         }
 
-        /* --- STATS HIGHLIGHT BAR --- */
         .stats-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -341,7 +336,6 @@
             margin-top: 0.2rem;
         }
 
-        /* --- SECTIONS --- */
         section {
             padding: 5.5rem 0;
             border-bottom: 1px solid var(--card-border);
@@ -363,7 +357,6 @@
             margin-top: 0.5rem;
         }
 
-        /* --- CARDS & GRID --- */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -411,7 +404,6 @@
             border-radius: 8px;
         }
 
-        /* --- RESEARCH / PUBLICATION STYLING --- */
         .publication-card {
             background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(11, 15, 25, 0.9) 100%);
             border: 1px solid rgba(99, 102, 241, 0.3);
@@ -462,7 +454,6 @@
             margin-bottom: 0;
         }
 
-        /* --- TIMELINE --- */
         .timeline {
             display: flex;
             flex-direction: column;
@@ -521,7 +512,6 @@
             text-decoration: underline;
         }
 
-        /* --- FOOTER --- */
         footer {
             padding: 4rem 0;
             text-align: center;
@@ -580,7 +570,6 @@
 
     <div class="hero-glow"></div>
 
-    <!-- NAVBAR -->
     <nav>
         <div class="container">
             <a href="#" class="logo">MD MASUD <span>PARVEJ</span></a>
@@ -596,12 +585,9 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
     <section id="hero">
         <div class="container">
             <div class="hero-grid">
-                
-                <!-- LEFT CONTENT -->
                 <div>
                     <div class="badge">
                         <span class="badge-dot"></span> Lead, Growth Operations @ Commure
@@ -611,8 +597,7 @@
                     <p class="hero-subtitle">
                         Data Analytics Leader driving revenue cycle management, automated benchmarking, predictive intelligence, and operational workflow efficiency.
                     </p>
-                    
-                    <!-- BUTTON ARRANGEMENT -->
+
                     <div class="hero-actions">
                         <div class="cta-main">
                             <a href="#experience" class="btn btn-primary">
@@ -637,16 +622,13 @@
                     </div>
                 </div>
 
-                <!-- RIGHT PORTRAIT SECTION WITH SMOOTH FADED BOTTOM -->
                 <div class="portrait-wrapper">
                     <div class="portrait-section">
                         <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="profile-img-cutout">
                     </div>
                 </div>
-
             </div>
 
-            <!-- HIGHLIGHT STATS BAR -->
             <div class="stats-bar">
                 <div class="stat-item">
                     <h3>5+ Years</h3>
@@ -721,7 +703,6 @@
             </div>
 
             <div class="timeline">
-                <!-- COMMURE -->
                 <div class="card timeline-card">
                     <div class="timeline-header">
                         <div>
@@ -731,7 +712,6 @@
                         <span class="date">January 2025 – Present</span>
                     </div>
 
-                    <!-- Role 1: Current -->
                     <div style="margin-top: 1rem; padding-left: 1rem; border-left: 2px solid var(--primary-accent);">
                         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
                             <h4 style="font-size: 1.1rem; color: var(--text-main);">Lead, Growth Operations <span style="font-size: 0.75rem; background: rgba(99,102,241,0.2); color: #818cf8; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 600;">Promoted</span></h4>
@@ -746,7 +726,6 @@
                         </ul>
                     </div>
 
-                    <!-- Role 2: Previous -->
                     <div style="margin-top: 1.5rem; padding-left: 1rem; border-left: 2px solid var(--card-border);">
                         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
                             <h4 style="font-size: 1.05rem; color: var(--text-muted);">Data Operations Manager</h4>
@@ -762,7 +741,6 @@
                     </div>
                 </div>
 
-                <!-- PORTER -->
                 <div class="card timeline-card">
                     <div class="timeline-header">
                         <div>
@@ -780,7 +758,6 @@
                     </ul>
                 </div>
 
-                <!-- SHOPUP -->
                 <div class="card timeline-card">
                     <div class="timeline-header">
                         <div>
@@ -798,7 +775,6 @@
                     </ul>
                 </div>
 
-                <!-- GRAMEEN DANONE -->
                 <div class="card timeline-card">
                     <div class="timeline-header">
                         <div>
@@ -814,7 +790,6 @@
                     </ul>
                 </div>
 
-                <!-- MIND MAPPER -->
                 <div class="card timeline-card">
                     <div class="timeline-header">
                         <div>
@@ -991,12 +966,11 @@
         </div>
     </section>
 
-    <!-- FOOTER / CONTACT -->
     <footer id="contact">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
             <p class="section-desc">Dhaka, Bangladesh • mprantikk@gmail.com • +880 1878 939548</p>
-            
+
             <ul class="social-links">
                 <li><a href="mailto:mprantikk@gmail.com">Email</a></li>
                 <li><a href="https://github.com/mprantikk" target="_blank">GitHub</a></li>
