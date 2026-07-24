@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MD MASUD PARVEJ | Data Analytics & Growth Operations Leader</title>
-    <!-- OPEN GRAPH THUMBNAIL META TAGS -->
-    <meta name="description" content="Data Analytics Leader specializing in RCM benchmarking and predictive intelligence.">
+
+    <!-- SEO & GENERAL META TAGS -->
+    <meta name="description" content="Data Analytics Leader specializing in revenue cycle management, automated benchmarking, predictive intelligence, and operational workflow efficiency.">
     <meta name="author" content="Md Masud Parvej">
-    <meta property="og:title" content="MD MASUD PARVEJ | Data Analytics Portfolio">
-    <meta property="og:description" content="Explore my portfolio featuring Revenue Cycle Analytics and the IQE Research Framework.">
-    <meta property="og:image" content="https://mprantikk.github.io/thumbnail.png">
+
+    <!-- FACEBOOK, LINKEDIN & OPEN GRAPH PREVIEW Meta Tags -->
+    <meta property="og:title" content="MD MASUD PARVEJ | Data Analytics & Growth Operations Leader">
+    <meta property="og:description" content="Explore my portfolio featuring Revenue Cycle Analytics, SQL engineering pipelines, and the Insight Quality Evaluation (IQE) Research Framework.">
+    <meta property="og:image" content="https://mprantikk.github.io/masud.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://mprantikk.github.io/">
     <meta property="og:type" content="website">
+    <meta property="fb:app_id" content="966242223397117">
+
+    <!-- TWITTER CARD META TAGS -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MD MASUD PARVEJ | Data Analytics Portfolio">
+    <meta name="twitter:description" content="Explore data engineering, RCM analytics, and AI evaluation research.">
+    <meta name="twitter:image" content="https://mprantikk.github.io/masud.png">
+
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-color: #060913; /* Primary dark background */
+            --bg-color: #060913;
             --card-bg: rgba(15, 23, 42, 0.75);
             --card-border: rgba(255, 255, 255, 0.08);
             --primary-accent: #6366f1;
@@ -28,12 +43,17 @@
             --gradient-1: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
             --glow: rgba(99, 102, 241, 0.18);
         }
+
         * {
-            margin: 0; padding: 0; box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+
         html {
             scroll-behavior: smooth;
         }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
@@ -41,135 +61,497 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+
         .container {
-            max-width: 1140px; margin: 0 auto; padding: 0 1.5rem;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
+
         /* --- NAVBAR --- */
         nav {
-            position: fixed; top: 0; width: 100%;
+            position: fixed;
+            top: 0;
+            width: 100%;
             background: rgba(6, 9, 19, 0.85);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--card-border);
             z-index: 1000;
         }
+
         nav .container {
-            display: flex; justify-content: space-between; align-items: center; height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 75px;
         }
+
         .logo {
-            font-weight: 800; font-size: 1.25rem; color: var(--text-main); text-decoration: none; letter-spacing: -0.5px;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
         }
+
         .logo span {
-            background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         .nav-links {
-            display: flex; gap: 1.75rem; list-style: none;
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
         }
+
         .nav-links a {
-            color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
         }
+
         .nav-links a:hover {
             color: var(--text-main);
         }
-        /* --- HERO SECTION & MODERN ASYMMETRICAL LAYOUT --- */
+
+        /* --- HERO SECTION --- */
         #hero {
             min-height: 92vh;
-            display: flex; align-items: center; padding-top: 120px; padding-bottom: 4rem; position: relative;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+            padding-bottom: 4rem;
+            position: relative;
         }
+
         .hero-glow {
-            position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%);
-            width: 600px; height: 600px;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
             background: radial-gradient(circle, var(--glow) 0%, rgba(0, 0, 0, 0) 70%);
-            z-index: -1; pointer-events: none;
+            z-index: -1;
+            pointer-events: none;
         }
+
         .hero-grid {
-            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
         }
-        /* NEW PORTRAIT AREA WITH FADED BOTTOM */
+
+        /* CLEAN PORTRAIT AREA WITH BOTTOM FADE (NO ORANGE RING / NO FRAME) */
         .portrait-wrapper {
-            position: relative; display: flex; justify-content: center; align-items: center;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
         .portrait-section {
-            position: relative; width: 480px; display: flex; justify-content: center; align-items: flex-end;
+            position: relative;
+            width: 480px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
         }
+
         .profile-img-cutout {
-            width: 100%; height: auto; display: block; object-fit: contain;
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
             object-position: center bottom;
-            /* Applies a linear mask, fading the bottom 30% of the PNG smoothly to transparency[cite: 10] */
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+
+            /* Mask gradient fades the bottom 30% smoothly to transparent */
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
         }
+
         .badge {
-            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 1.1rem; border-radius: 9999px;
-            background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); color: #818cf8; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.25rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 1.1rem;
+            border-radius: 9999px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #818cf8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
         }
+
         .badge-dot {
-            width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981;
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
         }
+
         .greeting {
-            font-size: 1.5rem; color: var(--secondary-accent); font-weight: 600; margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            color: var(--secondary-accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
+
         .hero-title {
-            font-size: 3.5rem; font-weight: 800; line-height: 1.15; letter-spacing: -1.5px; margin-bottom: 1.25rem;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.25rem;
         }
+
         .hero-title .gradient-text {
-            background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         .hero-subtitle {
-            font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
         }
+
         /* HERO ACTION BUTTONS */
         .hero-actions {
-            display: flex; flex-direction: column; gap: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
         }
+
         .cta-main {
-            display: flex; gap: 1rem; flex-wrap: wrap;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
+
         .cta-quick {
-            display: flex; align-items: center; gap: 1.25rem; padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .cta-quick span {
-            font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.75px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.75px;
         }
+
         .quick-links {
-            display: flex; gap: 1.25rem; flex-wrap: wrap;
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
         }
+
         .quick-link {
-            color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 0.35rem; transition: color 0.2s, transform 0.2s;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: color 0.2s, transform 0.2s;
         }
+
         .quick-link:hover {
-            color: var(--secondary-accent); transform: translateX(2px);
+            color: var(--secondary-accent);
+            transform: translateX(2px);
         }
+
         .btn {
-            display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.75rem; border-radius: 12px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
         }
+
         .btn-primary {
-            background: var(--primary-accent); color: white; box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+            background: var(--primary-accent);
+            color: white;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
         }
+
         .btn-primary:hover {
-            background: #4f46e5; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(99, 102, 241, 0.5);
+            background: #4f46e5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(99, 102, 241, 0.5);
         }
+
         .btn-secondary {
-            background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); backdrop-filter: blur(10px);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            backdrop-filter: blur(10px);
         }
+
         .btn-secondary:hover {
-            border-color: var(--primary-accent); transform: translateY(-2px); background: rgba(30, 41, 59, 0.8);
+            border-color: var(--primary-accent);
+            transform: translateY(-2px);
+            background: rgba(30, 41, 59, 0.8);
         }
+
         /* --- STATS HIGHLIGHT BAR --- */
         .stats-bar {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 3.5rem; padding: 2rem; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; backdrop-filter: blur(12px);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+            padding: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            backdrop-filter: blur(12px);
         }
+
         .stat-item h3 {
-            font-size: 2rem; font-weight: 800; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         .stat-item p {
-            color: var(--text-muted); font-size: 0.875rem; font-weight: 500; margin-top: 0.2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-top: 0.2rem;
         }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 5.5rem 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* --- CARDS & GRID --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.25s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            color: #d1d5db;
+            font-size: 0.825rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+        }
+
+        /* --- RESEARCH / PUBLICATION STYLING --- */
+        .publication-card {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(11, 15, 25, 0.9) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+        }
+
+        .pub-tag {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--secondary-accent);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.3rem 0.85rem;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin: 1.75rem 0;
+        }
+
+        .pub-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .pub-box h4 {
+            color: var(--secondary-accent);
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .pub-box p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        /* --- TIMELINE --- */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .role {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .company {
+            color: var(--secondary-accent);
+            font-weight: 600;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.35rem 0.85rem;
+            border-radius: 8px;
+            border: 1px solid var(--card-border);
+        }
+
+        .timeline-card ul {
+            padding-left: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-link {
+            color: var(--secondary-accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-top: 1rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-accent);
+        }
+
         @media (max-width: 992px) {
             .hero-grid {
-                grid-template-columns: 1fr; text-align: center;
+                grid-template-columns: 1fr;
+                text-align: center;
             }
             .portrait-wrapper {
-                order: -1; margin-bottom: 2rem;
+                order: -1;
+                margin-bottom: 2rem;
             }
             .portrait-section {
                 width: 320px;
@@ -178,6 +560,7 @@
                 justify-content: center;
             }
         }
+
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
@@ -186,27 +569,38 @@
                 display: none;
             }
             .cta-quick {
-                flex-direction: column; align-items: center;
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
+
     <div class="hero-glow"></div>
+
+    <!-- NAVBAR -->
     <nav>
         <div class="container">
             <a href="#" class="logo">MD MASUD <span>PARVEJ</span></a>
             <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#research">Research</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="https://github.com/mprantikk" target="_blank">GitHub</a></li>
-                <li><a href="https://linkedin.com/in/mprantikk" target="_blank">LinkedIn</a></li>
-                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Education & Certs</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
+
+    <!-- HERO SECTION -->
     <section id="hero">
         <div class="container">
             <div class="hero-grid">
+                
+                <!-- LEFT CONTENT -->
                 <div>
                     <div class="badge">
                         <span class="badge-dot"></span> Lead, Growth Operations @ Commure
@@ -216,36 +610,403 @@
                     <p class="hero-subtitle">
                         Data Analytics Leader driving revenue cycle management, automated benchmarking, predictive intelligence, and operational workflow efficiency.
                     </p>
+                    
+                    <!-- BUTTON ARRANGEMENT -->
                     <div class="hero-actions">
                         <div class="cta-main">
-                            <a href="#experience" class="btn btn-primary">Explore Experience</a>
-                            <a href="#research" class="btn btn-secondary">Read Publication (IQE)</a>
+                            <a href="#experience" class="btn btn-primary">
+                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                                Explore Experience
+                            </a>
+                            <a href="#research" class="btn btn-secondary">
+                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.82 9L12 4.57 20.18 9 12 13.43 3.82 9zM17 12.52l-5 2.73-5-2.53-2 1.09 7 3.54 7-3.82z"/></svg>
+                                Read Publication (IQE)
+                            </a>
                         </div>
+
                         <div class="cta-quick">
                             <span>Quick Access:</span>
                             <div class="quick-links">
                                 <a href="#projects" class="quick-link">Projects &rarr;</a>
                                 <a href="https://github.com/mprantikk" target="_blank" class="quick-link">GitHub &rarr;</a>
                                 <a href="https://linkedin.com/in/mprantikk" target="_blank" class="quick-link">LinkedIn &rarr;</a>
-                                <a href="#education" class="quick-link">Education &rarr;</a>
+                                <a href="#certifications" class="quick-link">Education &rarr;</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- RIGHT PORTRAIT SECTION WITH SMOOTH FADED BOTTOM -->
                 <div class="portrait-wrapper">
                     <div class="portrait-section">
-                        <!-- References the new masud.png (cutout) in root directory -->
                         <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="profile-img-cutout">
                     </div>
                 </div>
+
             </div>
+
+            <!-- HIGHLIGHT STATS BAR -->
             <div class="stats-bar">
-                <div class="stat-item"><h3>5+ Years</h3><p>Analytics & Operations Experience</p></div>
-                <div class="stat-item"><h3>15%+ Boost</h3><p>HRIS & System Data Accuracy</p></div>
-                <div class="stat-item"><h3>2 Award Wins</h3><p>Star Achiever & Commando Awards</p></div>
-                <div class="stat-item"><h3>PL-300 & GCP</h3><p>Microsoft & Google Certified</p></div>
+                <div class="stat-item">
+                    <h3>5+ Years</h3>
+                    <p>Analytics & Operations Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15%+ Boost</h3>
+                    <p>HRIS & System Data Accuracy</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2 Award Wins</h3>
+                    <p>Star Achiever & Commando Awards</p>
+                </div>
+                <div class="stat-item">
+                    <h3>PL-300 & GCP</h3>
+                    <p>Microsoft & Google Certified</p>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Core Competencies & Stack</h2>
+                <p class="section-desc">Technologies, frameworks, and methodologies I leverage across data engineering and operational strategy.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Data Engineering & SQL</h3>
+                    <div class="tags">
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">Microsoft SQL Server</span>
+                        <span class="tag">Snowflake</span>
+                        <span class="tag">Google Cloud (GCP)</span>
+                        <span class="tag">DAX</span>
+                        <span class="tag">Advanced Excel (VBA)</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>BI & Visualization</h3>
+                    <div class="tags">
+                        <span class="tag">Power BI (PL-300)</span>
+                        <span class="tag">Tableau</span>
+                        <span class="tag">Metabase</span>
+                        <span class="tag">Google Sheets</span>
+                        <span class="tag">Predictive Analytics</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Operations & Workflows</h3>
+                    <div class="tags">
+                        <span class="tag">Retool</span>
+                        <span class="tag">Notion</span>
+                        <span class="tag">Linear</span>
+                        <span class="tag">Agile Analytics (ICP-A)</span>
+                        <span class="tag">HRIS / TalentX</span>
+                        <span class="tag">Process Optimization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORK EXPERIENCE TIMELINE -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Detailed Experience Timeline</h2>
+                <p class="section-desc">A track record of driving operational scale, revenue cycle analytics, and strategic decision-making.</p>
+            </div>
+
+            <div class="timeline">
+                <!-- COMMURE -->
+                <div class="card timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="role">Commure</h3>
+                            <span class="company">Dhaka, Bangladesh</span>
+                        </div>
+                        <span class="date">January 2025 – Present</span>
+                    </div>
+
+                    <!-- Role 1: Current -->
+                    <div style="margin-top: 1rem; padding-left: 1rem; border-left: 2px solid var(--primary-accent);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                            <h4 style="font-size: 1.1rem; color: var(--text-main);">Lead, Growth Operations <span style="font-size: 0.75rem; background: rgba(99,102,241,0.2); color: #818cf8; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 600;">Promoted</span></h4>
+                            <span class="date">April 2026 – Present</span>
+                        </div>
+                        <ul style="margin-top: 0.5rem;">
+                            <li>Lead Growth Operations, bridging business strategy, data analytics, and operational technology execution.</li>
+                            <li>Drive revenue benchmarking, quality assurance, and automated insights to inform executive growth decisions.</li>
+                            <li>Build and automate scalable benchmarking and reporting infrastructure across operational pipelines.</li>
+                            <li>Collaborate closely with Engineering to debug EHR and operational datasets, resolving cross-system inconsistencies.</li>
+                            <li>Translate complex business challenges into data-driven analytical solutions for executive leadership.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Role 2: Previous -->
+                    <div style="margin-top: 1.5rem; padding-left: 1rem; border-left: 2px solid var(--card-border);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                            <h4 style="font-size: 1.05rem; color: var(--text-muted);">Data Operations Manager</h4>
+                            <span class="date">January 2025 – March 2026</span>
+                        </div>
+                        <ul style="margin-top: 0.5rem;">
+                            <li>Led cross-functional teams in Revenue Cycle Management (RCM) and Financial Data Analytics.</li>
+                            <li>Architected scalable data dashboards using PostgreSQL, Snowflake, Power BI, and Advanced Excel (VBA).</li>
+                            <li>Automated operational workflows and enhanced team productivity using Retool, Notion, and Linear.</li>
+                            <li>Established robust data governance and validation protocols to ensure strict data integrity and system reliability.</li>
+                            <li>Analyzed financial trends to identify optimization opportunities and support long-term strategic initiatives.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PORTER -->
+                <div class="card timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="role">Senior Data Analyst</h3>
+                            <span class="company">Porter</span>
+                        </div>
+                        <span class="date">July 2024 – January 2025</span>
+                    </div>
+                    <ul>
+                        <li>Collaborated with management to identify and prioritize core business needs, aligning analytical initiatives with organizational goals.</li>
+                        <li>Designed, developed, and managed comprehensive stakeholder reporting suites providing actionable insights for business decisions.</li>
+                        <li>Defined and documented Business-As-Usual (BAU) requirements, ensuring operational continuity and smooth daily processes.</li>
+                        <li>Prepared and presented executive reports detailing patterns, trends, and predictive analyses to support strategic planning.</li>
+                        <li>Acquired, maintained, and optimized primary and secondary data sources, performing routine quality checks to preserve database accuracy.</li>
+                    </ul>
+                </div>
+
+                <!-- SHOPUP -->
+                <div class="card timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="role">Automation & Analytics Expert</h3>
+                            <span class="company">ShopUp</span>
+                        </div>
+                        <span class="date">February 2022 – July 2024</span>
+                    </div>
+                    <ul>
+                        <li><strong>Honored with The Star Achiever Award (Q1 & Q2 2023)</strong> for exceptional performance and significant contributions to company-wide success.</li>
+                        <li>Managed and optimized ShopUp's HRIS (TalentX), driving a 15% increase in system accuracy and operational efficiency.</li>
+                        <li>Spearheaded automation initiatives across HR processes and designed appraisal systems to yield actionable employee development insights.</li>
+                        <li>Conducted in-depth HR and revenue data analytics, presenting strategic recommendations to department heads.</li>
+                        <li>Established data governance frameworks to ensure high security and integrity across internal data pipelines.</li>
+                    </ul>
+                </div>
+
+                <!-- GRAMEEN DANONE -->
+                <div class="card timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="role">Business Intelligence Executive</h3>
+                            <span class="company">Grameen Danone Foods Limited</span>
+                        </div>
+                        <span class="date">December 2020 – January 2022</span>
+                    </div>
+                    <ul>
+                        <li><strong>Awarded the Commando Award</strong> for boosting operational productivity by 20% through strategic BI solutions.</li>
+                        <li>Led the end-to-end development and maintenance of a custom Sales App, driving a 40% improvement in sales data management.</li>
+                        <li>Utilized Power BI, SQL, and Excel for strategic data modeling and business expansion reporting.</li>
+                    </ul>
+                </div>
+
+                <!-- MIND MAPPER -->
+                <div class="card timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="role">Business Development Specialist</h3>
+                            <span class="company">Mind Mapper Bangladesh</span>
+                        </div>
+                        <span class="date">December 2019 – December 2020</span>
+                    </div>
+                    <ul>
+                        <li>Led the operational transition of training programs from offline to online formats, establishing digital best practices.</li>
+                        <li>Planned and executed marketing and sales management initiatives to accelerate business growth.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH & PUBLICATIONS SECTION -->
+    <section id="research">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Research & Academic Publications</h2>
+                <p class="section-desc">Contributions to decision support systems, AI-augmented analytics, and evaluation frameworks.</p>
+            </div>
+
+            <div class="publication-card">
+                <span class="pub-tag">Conceptual Framework & Paper</span>
+                <h3 style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 0.75rem;">
+                    Beyond the Dashboard: A Conceptual Framework for Evaluating Insight Quality in AI-Augmented Business Intelligence Systems
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+                    <strong>Author:</strong> Md Masud Parvej (Independent Researcher)
+                </p>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                    Addresses a critical gap in augmented analytics: while modern BI systems automate pattern detection and natural language narration, organizations lack systematic standards to evaluate if AI-generated insights are statistically sound, non-trivial, and actionable. Proposes the <strong>Insight Quality Evaluation (IQE) Framework</strong>, synthesizing data mining interestingness, decision support systems, and information systems success research.
+                </p>
+
+                <h4 style="font-size: 1rem; color: var(--text-main); margin-bottom: 0.75rem;">The 4 Evaluative Dimensions of the IQE Framework:</h4>
+                <div class="pub-grid">
+                    <div class="pub-box">
+                        <h4>1. Statistical Validity</h4>
+                        <p>Ensures discovered patterns are genuine and non-spurious, guarding against overfitting and multiple-comparison noise.</p>
+                    </div>
+                    <div class="pub-box">
+                        <h4>2. Contextual Relevance</h4>
+                        <p>Evaluates whether an automated observation bears directly on active managerial decision scenarios.</p>
+                    </div>
+                    <div class="pub-box">
+                        <h4>3. Novelty</h4>
+                        <p>Measures added informational value beyond baseline organizational knowledge and known seasonal effects.</p>
+                    </div>
+                    <div class="pub-box">
+                        <h4>4. Actionability</h4>
+                        <p>Assesses whether an insight implies a clear, feasible, and high-impact business intervention.</p>
+                    </div>
+                </div>
+
+                <div class="tags" style="margin-top: 1.5rem;">
+                    <span class="tag">Augmented Analytics</span>
+                    <span class="tag">Business Intelligence</span>
+                    <span class="tag">Insight Quality (IQE)</span>
+                    <span class="tag">Decision Support Systems</span>
+                    <span class="tag">AI Evaluation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GITHUB FEATURED PROJECTS -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Engineering Projects</h2>
+                <p class="section-desc">Open-source repositories focused on Revenue Cycle Management, SQL Analytics, and AI Quality Frameworks.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>RCM Revenue Benchmarking</h3>
+                    <p>Python and PostgreSQL analytical benchmarking pipeline for healthcare Revenue Cycle Management (RCM) KPIs, tracking collection rates, claim denials, and clean claim metrics.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">RCM Analytics</span>
+                    </div>
+                    <a href="https://github.com/mprantikk/rcm-revenue-benchmarking" target="_blank" class="project-link">View Repository &rarr;</a>
+                </div>
+
+                <div class="card">
+                    <h3>SQL Revenue Analytics</h3>
+                    <p>PostgreSQL schema and querying suite built for business intelligence, performing revenue trends analysis, customer segmentation, and automated data integrity protocols.</p>
+                    <div class="tags">
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">Business Intelligence</span>
+                        <span class="tag">Docker</span>
+                    </div>
+                    <a href="https://github.com/mprantikk/sql-revenue-analytics" target="_blank" class="project-link">View Repository &rarr;</a>
+                </div>
+
+                <div class="card">
+                    <h3>AI Insight Quality Evaluation</h3>
+                    <p>Framework for evaluating the precision, relevance, and actionability of automated AI and LLM insights in operational environments.</p>
+                    <div class="tags">
+                        <span class="tag">AI Evaluation</span>
+                        <span class="tag">Data Strategy</span>
+                        <span class="tag">LLM Quality</span>
+                    </div>
+                    <a href="https://github.com/mprantikk/ai-insight-quality-evaluation" target="_blank" class="project-link">View Repository &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS & EDUCATION -->
+    <section id="certifications">
+        <div class="container">
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Professional Certifications</h3>
+                    <ul style="list-style: none; color: var(--text-muted);">
+                        <li style="margin-bottom: 0.85rem;">
+                            <strong style="color: var(--text-main);">Microsoft Certified: Power BI Data Analyst Associate (PL-300)</strong><br>
+                            Microsoft
+                        </li>
+                        <li style="margin-bottom: 0.85rem;">
+                            <strong style="color: var(--text-main);">ICAgile Certified Professional - Agile Analytics (ICP-A)</strong><br>
+                            ICAgile
+                        </li>
+                        <li style="margin-bottom: 0.85rem;">
+                            <strong style="color: var(--text-main);">Certified Supply Chain Analyst (CSCA)</strong><br>
+                            ISCEA Bangladesh (100% Scholarship Recipient)
+                        </li>
+                        <li style="margin-bottom: 0.85rem;">
+                            <strong style="color: var(--text-main);">Big Data & Machine Learning on GCP</strong><br>
+                            Google Cloud
+                        </li>
+                        <li style="margin-bottom: 0.85rem;">
+                            <strong style="color: var(--text-main);">Google Data Analytics Professional Certificate</strong><br>
+                            Coursera
+                        </li>
+                        <li>
+                            <strong style="color: var(--text-main);">MOS: Excel Expert</strong><br>
+                            Microsoft
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Academic Education</h3>
+                    <ul style="list-style: none; color: var(--text-muted);">
+                        <li style="margin-bottom: 1.75rem;">
+                            <strong style="color: var(--text-main); font-size: 1.05rem;">M.Sc. in Data Science and Analytics</strong><br>
+                            East West University<br>
+                            <span style="font-size: 0.85rem; color: var(--secondary-accent);">Currently Pursuing</span>
+                        </li>
+                        <li>
+                            <strong style="color: var(--text-main); font-size: 1.05rem;">B.Sc. in Electrical & Electronic Engineering</strong><br>
+                            United International University<br>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Graduated 2018 (CGPA: 3.12 / 4.00)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Professional Development</h3>
+                    <ul style="list-style: none; color: var(--text-muted); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.6rem;">• Data Strategy for Leaders (LinkedIn Learning)</li>
+                        <li style="margin-bottom: 0.6rem;">• Leading Data & Analytics Teams (LinkedIn Learning)</li>
+                        <li style="margin-bottom: 0.6rem;">• Data Governance Foundations (DAMA/LinkedIn)</li>
+                        <li style="margin-bottom: 0.6rem;">• Agile Project Management for Analytics</li>
+                        <li>• Effective Stakeholder Communication (Coursera)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-desc">Dhaka, Bangladesh • mprantikk@gmail.com • +880 1878 939548</p>
+            
+            <ul class="social-links">
+                <li><a href="mailto:mprantikk@gmail.com">Email</a></li>
+                <li><a href="https://github.com/mprantikk" target="_blank">GitHub</a></li>
+                <li><a href="https://linkedin.com/in/mprantikk" target="_blank">LinkedIn</a></li>
+            </ul>
+
+            <p style="color: #4b5563; font-size: 0.85rem; margin-top: 2.5rem;">
+                &copy; 2026 MD MASUD PARVEJ. Built & Hosted Live.
+            </p>
+        </div>
+    </footer>
+
 </body>
 </html>
