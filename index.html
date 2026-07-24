@@ -107,7 +107,7 @@
             color: var(--text-main);
         }
 
-        /* --- HERO SECTION & MODERN ASYMMETRICAL LAYOUT --- */
+        /* --- HERO SECTION & ASYMMETRICAL LAYOUT --- */
         #hero {
             min-height: 92vh;
             display: flex;
@@ -131,12 +131,12 @@
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr; /* Desktop asymmetry */
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 4rem;
             align-items: center;
         }
 
-        /* FIX: Modern Portrait Section with Glowing Ring */
+        /* PORTRAIT SECTION (Clean, no background ring) */
         .portrait-wrapper {
             position: relative;
             display: flex;
@@ -149,38 +149,20 @@
             width: 480px;
             display: flex;
             justify-content: center;
-            align-items: flex-end; /* Cutout sits at bottom of area */
-            border-radius: 50%; /* Used ONLY for the background shape */
-            overflow: visible; /* Needed for cutout to overlap */
+            align-items: flex-end;
         }
 
-        /* NEON GLOW RING (Behind Cutout - fixed position) */
-        .portrait-section::before {
-            content: '';
-            position: absolute;
-            top: -20px; left: -20px; right: -20px; bottom: -20px;
-            border-radius: 50%;
-            padding: 4px; /* Thickness of glowing ring */
-            background: linear-gradient(135deg, var(--secondary-accent), var(--primary-accent)); /* Reference glow color mix */
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            border: 4px solid var(--secondary-accent);
-            box-shadow: 0 0 35px rgba(6, 182, 212, 0.4), 0 0 15px rgba(99, 102, 241, 0.3);
-            pointer-events: none;
-            z-index: 1; /* Sits below the cutout */
-        }
-
+        /* PHOTO WITH FADED BOTTOM EFFECT */
         .profile-img-cutout {
-            height: 105%; /* Sits higher and larger within glowing ring */
-            width: auto;
-            position: relative;
-            bottom: -5px; /* Sits lower for perfect alignment */
+            width: 100%;
+            height: auto;
             display: block;
             object-fit: contain;
-            transform: scale(1.1); /* Cleanup scaling */
             object-position: center bottom;
-            z-index: 10; /* Sits above the glowing ring */
+
+            /* Mask gradient fades the bottom 30% smoothly to transparent */
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
         }
 
         .badge {
@@ -644,10 +626,9 @@
                     </div>
                 </div>
 
-                <!-- RIGHT CIRCULAR PORTRAIT (Fixed Alignment and Glow Ring) -->
+                <!-- RIGHT PORTRAIT SECTION WITH SMOOTH FADED BOTTOM -->
                 <div class="portrait-wrapper">
                     <div class="portrait-section">
-                        <!-- Points strictly to masud.png (transparent cutout) on GitHub -->
                         <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="profile-img-cutout">
                     </div>
                 </div>
