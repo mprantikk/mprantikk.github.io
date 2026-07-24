@@ -6,7 +6,7 @@
     <title>MD MASUD PARVEJ | Data Analytics & Growth Operations Leader</title>
 
     <!-- SEO & GENERAL META TAGS -->
-    <meta name="description" content="Data Analytics Leader specializing in revenue cycle management, automated benchmarking, predictive intelligence, and operational workflow efficiency.">
+    <meta name="description" content="Data Analytics Leader driving revenue benchmarking, automated QA, predictive intelligence, and operational workflow efficiency.">
     <meta name="author" content="Md Masud Parvej">
 
     <!-- FACEBOOK, LINKEDIN & OPEN GRAPH PREVIEW META TAGS -->
@@ -69,7 +69,7 @@
             padding: 0 1.5rem;
         }
 
-        /* --- NAVBAR --- */
+        /* --- STICKY ALWAYS-VISIBLE NAVBAR --- */
         nav {
             position: fixed;
             top: 0;
@@ -103,7 +103,7 @@
 
         .nav-links {
             display: flex;
-            gap: 1.75rem;
+            gap: 1.5rem;
             list-style: none;
         }
 
@@ -117,6 +117,35 @@
 
         .nav-links a:hover {
             color: var(--text-main);
+        }
+
+        /* FLOATING BACK TO TOP BUTTON */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.25rem;
+            backdrop-filter: blur(12px);
+            z-index: 999;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-accent);
+            border-color: var(--primary-accent);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 24px rgba(99, 102, 241, 0.4);
         }
 
         /* --- HERO SECTION --- */
@@ -570,11 +599,12 @@
 
     <div class="hero-glow"></div>
 
+    <!-- ALWAYS VISIBLE STICKY NAVBAR -->
     <nav>
         <div class="container">
-            <a href="#" class="logo">MD MASUD <span>PARVEJ</span></a>
+            <a href="#hero" class="logo">MD MASUD <span>PARVEJ</span></a>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
+                <li><a href="#hero">Home</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#research">Research</a></li>
@@ -585,6 +615,10 @@
         </div>
     </nav>
 
+    <!-- FLOATING BACK TO TOP BUTTON -->
+    <a href="#hero" class="back-to-top" title="Back to top">↑</a>
+
+    <!-- HERO SECTION -->
     <section id="hero">
         <div class="container">
             <div class="hero-grid">
@@ -592,7 +626,7 @@
                     <div class="badge">
                         <span class="badge-dot"></span> Lead, Growth Operations @ Commure
                     </div>
-                    <div class="greeting">Hi, I'm Masud 👋</div>
+                    <div class="greeting">Hi, I'm Masud </div>
                     <h1 class="hero-title">Architecting Business Growth Through <span class="gradient-text">Data Engineering & Analytics</span>.</h1>
                     <p class="hero-subtitle">
                         Data Analytics Leader driving revenue benchmarking, automated QA, predictive intelligence, and operational workflow efficiency.
