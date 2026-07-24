@@ -114,7 +114,7 @@
             color: var(--text-main);
         }
 
-        /* --- HERO & PROFILE PHOTO LAYOUT --- */
+        /* --- HERO SECTION & ASYMMETRICAL GRID LAYOUT --- */
         #hero {
             min-height: 92vh;
             display: flex;
@@ -127,7 +127,7 @@
         .hero-grid {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
-            gap: 3.5rem;
+            gap: 4rem;
             align-items: center;
         }
 
@@ -143,33 +143,48 @@
             pointer-events: none;
         }
 
-        /* PROFILE IMAGE CONTAINER */
-        .profile-wrapper {
+        /* AESTHETIC PORTRAIT PLACEMENT */
+        .portrait-wrapper {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .profile-card {
+        .portrait-card {
             position: relative;
             width: 100%;
-            max-width: 360px;
+            max-width: 380px;
             border-radius: 24px;
             padding: 10px;
+            /* Match accent colors of design */
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(6, 182, 212, 0.2) 100%);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(99, 102, 241, 0.25);
             backdrop-filter: blur(12px);
         }
 
-        .profile-img {
+        .portrait-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 24px;
+            border: 2px solid transparent;
+            /* Glowing border */
+            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .profile-img-cutout {
             width: 100%;
             height: auto;
-            aspect-ratio: 4/5;
-            object-fit: cover;
-            object-position: center 20%;
-            border-radius: 16px;
             display: block;
+            border-radius: 16px;
+            aspect-ratio: 1/1.1;
+            object-fit: contain;
+            object-position: center bottom;
         }
 
         .badge {
@@ -546,9 +561,9 @@
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            .profile-wrapper {
-                order: -1;
-                margin-bottom: 1rem;
+            .portrait-wrapper {
+                order: -1; /* Portrait on top on tablet */
+                margin-bottom: 2rem;
             }
             .hero-actions, .cta-main {
                 justify-content: center;
@@ -592,7 +607,7 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION WITH PROFILE PHOTO -->
+    <!-- HERO SECTION WITH AESTHETIC PORTRAIT PLACEMENT -->
     <section id="hero">
         <div class="container">
             <div class="hero-grid">
@@ -633,10 +648,11 @@
                     </div>
                 </div>
 
-                <!-- RIGHT PROFILE PHOTO CARD -->
-                <div class="profile-wrapper">
-                    <div class="profile-card">
-                        <img src="masud.png" alt="MD Masud Parvej" class="profile-img">
+                <!-- RIGHT PORTRAIT CARD PLACEHOLDER -->
+                <div class="portrait-wrapper">
+                    <div class="portrait-card">
+                        <!-- Points to strictly masud.png uploaded to root -->
+                        <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="profile-img-cutout">
                     </div>
                 </div>
 
