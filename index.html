@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MD MASUD PARVEJ | Data Analytics & Growth Operations Leader</title>
+
+    <!-- SEO & OPEN GRAPH THUMBNAIL META TAGS FOR LINKEDIN & SOCIAL MEDIA -->
+    <meta name="description" content="Data Analytics Leader specializing in revenue cycle management, automated benchmarking, predictive intelligence, and operational workflow efficiency.">
+    <meta name="author" content="Md Masud Parvej">
+    
+    <meta property="og:title" content="MD MASUD PARVEJ | Data Analytics & Growth Operations Leader">
+    <meta property="og:description" content="Explore my portfolio featuring Revenue Cycle Analytics, SQL engineering pipelines, and the Insight Quality Evaluation (IQE) Research Framework.">
+    <meta property="og:image" content="https://mprantikk.github.io/masud.png">
+    <meta property="og:url" content="https://mprantikk.github.io/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MD MASUD PARVEJ | Data Analytics Portfolio">
+    <meta name="twitter:description" content="Explore data engineering, RCM analytics, and AI evaluation research.">
+    <meta name="twitter:image" content="https://mprantikk.github.io/masud.png">
+
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --bg-color: #060913;
@@ -96,7 +114,7 @@
             color: var(--text-main);
         }
 
-        /* --- HERO --- */
+        /* --- HERO & PROFILE PHOTO LAYOUT --- */
         #hero {
             min-height: 92vh;
             display: flex;
@@ -104,6 +122,13 @@
             padding-top: 120px;
             padding-bottom: 4rem;
             position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3.5rem;
+            align-items: center;
         }
 
         .hero-glow {
@@ -116,6 +141,35 @@
             background: radial-gradient(circle, var(--glow) 0%, rgba(0, 0, 0, 0) 70%);
             z-index: -1;
             pointer-events: none;
+        }
+
+        /* PROFILE IMAGE CONTAINER */
+        .profile-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-card {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            border-radius: 24px;
+            padding: 10px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(6, 182, 212, 0.2) 100%);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(99, 102, 241, 0.25);
+            backdrop-filter: blur(12px);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            object-position: center 20%;
+            border-radius: 16px;
+            display: block;
         }
 
         .badge {
@@ -148,7 +202,7 @@
         }
 
         .hero-title {
-            font-size: 3.75rem;
+            font-size: 3.5rem;
             font-weight: 800;
             line-height: 1.15;
             letter-spacing: -1.5px;
@@ -162,10 +216,9 @@
         }
 
         .hero-subtitle {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
-            max-width: 780px;
-            margin-bottom: 2.25rem;
+            margin-bottom: 2rem;
         }
 
         /* HERO ACTION BUTTONS */
@@ -187,7 +240,6 @@
             gap: 1.25rem;
             padding-top: 0.75rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            max-width: 650px;
         }
 
         .cta-quick span {
@@ -489,6 +541,23 @@
             color: var(--primary-accent);
         }
 
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .profile-wrapper {
+                order: -1;
+                margin-bottom: 1rem;
+            }
+            .hero-actions, .cta-main {
+                justify-content: center;
+            }
+            .cta-quick {
+                justify-content: center;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
@@ -498,7 +567,7 @@
             }
             .cta-quick {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
             }
         }
     </style>
@@ -523,40 +592,54 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION WITH PROFILE PHOTO -->
     <section id="hero">
         <div class="container">
-            <div class="badge">
-                <span class="badge-dot"></span> Lead, Growth Operations @ Commure
-            </div>
-            <div class="greeting">Hi, I'm Masud 👋</div>
-            <h1 class="hero-title">Architecting Business Growth Through <span class="gradient-text">Data Engineering & Analytics</span>.</h1>
-            <p class="hero-subtitle">
-                Data Analytics Leader driving revenue cycle management, automated benchmarking, predictive intelligence, and operational workflow efficiency.
-            </p>
-            
-            <!-- BUTTON ARRANGEMENT -->
-            <div class="hero-actions">
-                <div class="cta-main">
-                    <a href="#experience" class="btn btn-primary">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
-                        Explore Experience
-                    </a>
-                    <a href="#research" class="btn btn-secondary">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.82 9L12 4.57 20.18 9 12 13.43 3.82 9zM17 12.52l-5 2.73-5-2.53-2 1.09 7 3.54 7-3.82z"/></svg>
-                        Read Publication (IQE)
-                    </a>
-                </div>
+            <div class="hero-grid">
+                
+                <!-- LEFT CONTENT -->
+                <div>
+                    <div class="badge">
+                        <span class="badge-dot"></span> Lead, Growth Operations @ Commure
+                    </div>
+                    <div class="greeting">Hi, I'm Masud 👋</div>
+                    <h1 class="hero-title">Architecting Business Growth Through <span class="gradient-text">Data Engineering & Analytics</span>.</h1>
+                    <p class="hero-subtitle">
+                        Data Analytics Leader driving revenue cycle management, automated benchmarking, predictive intelligence, and operational workflow efficiency.
+                    </p>
+                    
+                    <!-- BUTTON ARRANGEMENT -->
+                    <div class="hero-actions">
+                        <div class="cta-main">
+                            <a href="#experience" class="btn btn-primary">
+                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                                Explore Experience
+                            </a>
+                            <a href="#research" class="btn btn-secondary">
+                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.82 9L12 4.57 20.18 9 12 13.43 3.82 9zM17 12.52l-5 2.73-5-2.53-2 1.09 7 3.54 7-3.82z"/></svg>
+                                Read Publication (IQE)
+                            </a>
+                        </div>
 
-                <div class="cta-quick">
-                    <span>Quick Access:</span>
-                    <div class="quick-links">
-                        <a href="#projects" class="quick-link">Projects &rarr;</a>
-                        <a href="https://github.com/mprantikk" target="_blank" class="quick-link">GitHub &rarr;</a>
-                        <a href="https://linkedin.com/in/mprantikk" target="_blank" class="quick-link">LinkedIn &rarr;</a>
-                        <a href="#certifications" class="quick-link">Education &rarr;</a>
+                        <div class="cta-quick">
+                            <span>Quick Access:</span>
+                            <div class="quick-links">
+                                <a href="#projects" class="quick-link">Projects &rarr;</a>
+                                <a href="https://github.com/mprantikk" target="_blank" class="quick-link">GitHub &rarr;</a>
+                                <a href="https://linkedin.com/in/mprantikk" target="_blank" class="quick-link">LinkedIn &rarr;</a>
+                                <a href="#certifications" class="quick-link">Education &rarr;</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- RIGHT PROFILE PHOTO CARD -->
+                <div class="profile-wrapper">
+                    <div class="profile-card">
+                        <img src="masud.png" alt="MD Masud Parvej" class="profile-img">
+                    </div>
+                </div>
+
             </div>
 
             <!-- HIGHLIGHT STATS BAR -->
