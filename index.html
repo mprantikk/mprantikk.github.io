@@ -81,7 +81,7 @@
             padding: 0 1.5rem;
         }
 
-        /* --- STICKY ALWAYS-VISIBLE NAVBAR --- */
+        /* --- STICKY NAVBAR --- */
         nav {
             position: fixed;
             top: 0;
@@ -206,7 +206,7 @@
             box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION STACKING --- */
         #hero {
             min-height: 92vh;
             display: flex;
@@ -229,24 +229,75 @@
             animation: glowPulse 6s infinite ease-in-out;
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 4rem;
-            align-items: center;
+        .hero-container-relative {
+            position: relative;
+            width: 100%;
+        }
+
+        .hero-text-content {
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
+            max-width: 840px;
+        }
+
+        .hero-title {
+            font-size: 3.25rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title-line1 {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .hero-title-line2 {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .hero-title .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .typed-cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--secondary-accent);
+            margin-left: 4px;
+            animation: blinkCursor 0.8s infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 540px;
         }
 
         .portrait-wrapper {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: floatPortrait 6s ease-in-out infinite;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            pointer-events: none;
+            will-change: transform;
+            animation: floatPortrait 5s ease-in-out infinite;
         }
 
         .portrait-section {
             position: relative;
-            width: 480px;
+            width: 440px;
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -258,13 +309,18 @@
             display: block;
             object-fit: contain;
             object-position: center bottom;
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-            transition: transform 0.5s ease;
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0) 100%);
+            opacity: 0.85;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            will-change: transform;
+            transform: translateZ(0);
+            pointer-events: auto;
         }
 
         .profile-img-cutout:hover {
-            transform: scale(1.02);
+            opacity: 1;
+            transform: scale(1.03) translateZ(0);
         }
 
         .badge {
@@ -303,40 +359,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -1.5px;
-            margin-bottom: 1.25rem;
-        }
-
-        .hero-title .gradient-text {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* TYPING TEXT CURSOR ANIMATION */
-        .typed-cursor {
-            display: inline-block;
-            width: 3px;
-            background-color: var(--secondary-accent);
-            margin-left: 4px;
-            animation: blinkCursor 0.8s infinite;
-        }
-
-        @keyframes blinkCursor {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
         .hero-actions {
             display: flex;
             flex-direction: column;
@@ -355,6 +377,7 @@
             gap: 1.25rem;
             padding-top: 0.75rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 540px;
         }
 
         .cta-quick span {
@@ -425,37 +448,71 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3.5rem;
-            padding: 2rem;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 18px;
-            backdrop-filter: blur(12px);
-            transition: all 0.4s ease;
+        /* --- ENHANCED HIGH-IMPACT ANIMATED STATS BAR --- */
+        .stats-bar-wrapper {
+            position: relative;
+            margin-top: 4.5rem;
+            padding: 2px;
+            border-radius: 22px;
+            background: linear-gradient(90deg, #6366f1, #a855f7, #06b6d4, #6366f1);
+            background-size: 300% 300%;
+            animation: borderGlow 6s ease infinite, floatStats 6s ease-in-out infinite;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.25);
+            z-index: 10;
         }
 
-        .stats-bar:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            padding: 2.75rem 2.5rem;
+            background: rgba(6, 9, 19, 0.92);
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+        }
+
+        .stat-item {
+            text-align: center;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 0.5rem;
+            border-radius: 12px;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-6px) scale(1.04);
         }
 
         .stat-item h3 {
-            font-size: 2rem;
+            font-size: 2.5rem; /* Larger font size */
             font-weight: 800;
+            letter-spacing: -0.5px;
             background: var(--gradient-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 0.35rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover h3 {
+            filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.6));
         }
 
         .stat-item p {
             color: var(--text-muted);
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-top: 0.2rem;
+            font-size: 0.95rem; /* Larger description font size */
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes floatStats {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         section {
@@ -486,7 +543,7 @@
             perspective: 1000px;
         }
 
-        /* --- MOUSE HOVER CURSOR GLOW + 3D TILT CARDS --- */
+        /* --- CARDS WITH MOUSE HOVER GLOW --- */
         .card {
             position: relative;
             background: var(--card-bg);
@@ -739,16 +796,21 @@
             }
         }
 
+        /* GPU-ACCELERATED SMOOTH PORTRAIT FLOAT */
         @keyframes floatPortrait {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { 
+                transform: translateY(0) translateZ(0); 
+            }
+            50% { 
+                transform: translateY(-12px) translateZ(0); 
+            }
         }
 
         /* SCROLL REVEAL CLASS */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .reveal.active {
@@ -758,23 +820,37 @@
 
         /* --- RESPONSIVE MOBILE STYLES --- */
         @media (max-width: 992px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
             .portrait-wrapper {
-                order: -1;
-                margin-bottom: 1.5rem;
+                position: relative;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            .hero-title-line1, .hero-title-line2 {
+                white-space: normal;
             }
             .portrait-section {
                 width: 320px;
                 max-width: 100%;
+            }
+            .hero-text-content {
+                text-align: center;
             }
             .hero-actions, .cta-main, .cta-quick {
                 justify-content: center;
             }
             .grid-3 {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .stats-bar {
+                padding: 1.75rem 1.25rem;
+            }
+            .stat-item h3 {
+                font-size: 2rem;
             }
         }
 
@@ -804,7 +880,7 @@
             }
 
             .hero-title {
-                font-size: 2.3rem;
+                font-size: 2.1rem;
             }
 
             .cta-quick {
@@ -860,68 +936,75 @@
 
     <!-- HERO SECTION -->
     <section id="hero">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="reveal active">
-                    <div class="badge">
-                        <span class="badge-dot"></span> Lead, Growth Operations @ Commure
-                    </div>
-                    <div class="greeting">Hi, I'm Masud</div>
-                    <h1 class="hero-title">Architecting Business Growth Through <span class="gradient-text" id="typedText"></span><span class="typed-cursor">&nbsp;</span></h1>
-                    <p class="hero-subtitle">
-                        Data Analytics Leader driving revenue benchmarking, automated QA, predictive intelligence, and operational workflow efficiency.
-                    </p>
-
-                    <div class="hero-actions">
-                        <div class="cta-main">
-                            <a href="#experience" class="btn btn-primary">
-                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11 0 2 .89 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
-                                Explore Experience
-                            </a>
-                            <a href="#research" class="btn btn-secondary">
-                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.82 9L12 4.57 20.18 9 12 13.43 3.82 9zM17 12.52l-5 2.73-5-2.53-2 1.09 7 3.54 7-3.82z"/></svg>
-                                Read Publication (IQE)
-                            </a>
-                        </div>
-
-                        <div class="cta-quick">
-                            <span>Quick Access:</span>
-                            <div class="quick-links">
-                                <a href="#projects" class="quick-link">Projects &rarr;</a>
-                                <a href="https://github.com/mprantikk" target="_blank" class="quick-link">GitHub &rarr;</a>
-                                <a href="https://linkedin.com/in/mprantikk" target="_blank" class="quick-link">LinkedIn &rarr;</a>
-                                <a href="#certifications" class="quick-link">Education &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
+        <div class="container hero-container-relative">
+            
+            <!-- ABSOLUTELY FIXED PORTRAIT WRAPPER -->
+            <div class="portrait-wrapper reveal active">
+                <div class="portrait-section">
+                    <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="profile-img-cutout">
                 </div>
+            </div>
 
-                <div class="portrait-wrapper reveal active">
-                    <div class="portrait-section">
-                        <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="profile-img-cutout">
+            <!-- FOREGROUND OVERLAY TEXT CONTENT -->
+            <div class="hero-text-content reveal active">
+                <div class="badge">
+                    <span class="badge-dot"></span> Lead, Growth Operations @ Commure
+                </div>
+                <div class="greeting">Hi, I'm Masud</div>
+                <h1 class="hero-title">
+                    <span class="hero-title-line1">Architecting Business Growth</span>
+                    <span class="hero-title-line2">Through <span class="gradient-text" id="typedText"></span><span class="typed-cursor">&nbsp;</span></span>
+                </h1>
+                <p class="hero-subtitle">
+                    Data Analytics Leader driving revenue benchmarking, automated QA, predictive intelligence, and operational workflow efficiency.
+                </p>
+
+                <div class="hero-actions">
+                    <div class="cta-main">
+                        <a href="#experience" class="btn btn-primary">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11 0 2 .89 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                            Explore Experience
+                        </a>
+                        <a href="#research" class="btn btn-secondary">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.82 9L12 4.57 20.18 9 12 13.43 3.82 9zM17 12.52l-5 2.73-5-2.53-2 1.09 7 3.54 7-3.82z"/></svg>
+                            Read Publication (IQE)
+                        </a>
+                    </div>
+
+                    <div class="cta-quick">
+                        <span>Quick Access:</span>
+                        <div class="quick-links">
+                            <a href="#projects" class="quick-link">Projects &rarr;</a>
+                            <a href="https://github.com/mprantikk" target="_blank" class="quick-link">GitHub &rarr;</a>
+                            <a href="https://linkedin.com/in/mprantikk" target="_blank" class="quick-link">LinkedIn &rarr;</a>
+                            <a href="#certifications" class="quick-link">Education &rarr;</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ANIMATED NUMBER STATS BAR -->
-            <div class="stats-bar reveal">
-                <div class="stat-item">
-                    <h3><span class="counter" data-target="5">0</span>+ Years</h3>
-                    <p>Analytics & Operations Experience</p>
-                </div>
-                <div class="stat-item">
-                    <h3><span class="counter" data-target="15">0</span>%+ Boost</h3>
-                    <p>HRIS & System Data Accuracy</p>
-                </div>
-                <div class="stat-item">
-                    <h3><span class="counter" data-target="2">0</span> Award Wins</h3>
-                    <p>Star Achiever & Commando Awards</p>
-                </div>
-                <div class="stat-item">
-                    <h3>PL-300 & GCP</h3>
-                    <p>Microsoft & Google Certified</p>
+            <!-- ENHANCED GLOWING ANIMATED STATS BAR -->
+            <div class="stats-bar-wrapper reveal">
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <h3><span class="counter" data-target="5">0</span>+ Years</h3>
+                        <p>Analytics & Operations Experience</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3><span class="counter" data-target="15">0</span>%+ Boost</h3>
+                        <p>HRIS & System Data Accuracy</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3><span class="counter" data-target="2">0</span> Award Wins</h3>
+                        <p>Star Achiever & Commando Awards</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>PL-300 & GCP</h3>
+                        <p>Microsoft & Google Certified</p>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -1276,7 +1359,7 @@
         });
 
         // 2. Dynamic Auto-Typing Effect in Hero Title
-        const words = ["Data Engineering & Analytics.", "Predictive AI Intelligence.", "Growth Operations Strategy.", "Revenue Cycle Analytics."];
+        const words = ["Data Analytics.", "Data Engineering.", "Growth Operations.", "Predictive AI."];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -1333,9 +1416,9 @@
         // 4. Animated Number Counter on Scroll
         let countersTriggered = false;
         function animateCounters() {
-            const statsBar = document.querySelector('.stats-bar');
-            if (!statsBar) return;
-            const rect = statsBar.getBoundingClientRect();
+            const statsBarWrapper = document.querySelector('.stats-bar-wrapper');
+            if (!statsBarWrapper) return;
+            const rect = statsBarWrapper.getBoundingClientRect();
             
             if (rect.top <= window.innerHeight && !countersTriggered) {
                 countersTriggered = true;
