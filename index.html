@@ -35,7 +35,7 @@
     <style>
         :root {
             --bg-color: #060913;
-            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-bg: rgba(15, 23, 42, 0.7);
             --card-border: rgba(255, 255, 255, 0.08);
             --primary-accent: #6366f1;
             --secondary-accent: #06b6d4;
@@ -61,6 +61,18 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+            animation: fadeInPage 1s ease-out;
+        }
+
+        /* --- BACKGROUND CANVAS PARTICLES --- */
+        #particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .container {
@@ -76,8 +88,10 @@
             width: 100%;
             background: rgba(6, 9, 19, 0.85);
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--card-border);
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         nav .container {
@@ -93,6 +107,12 @@
             color: var(--text-main);
             text-decoration: none;
             letter-spacing: -0.5px;
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
         }
 
         .logo span {
@@ -112,11 +132,49 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.2s;
+            transition: color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            position: relative;
         }
 
-        .nav-links a:hover {
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--text-main);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-main);
+            border-radius: 2px;
+            transition: all 0.3s ease;
         }
 
         /* FLOATING BACK TO TOP BUTTON */
@@ -137,15 +195,15 @@
             font-size: 1.25rem;
             backdrop-filter: blur(12px);
             z-index: 999;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .back-to-top:hover {
             background: var(--primary-accent);
             border-color: var(--primary-accent);
-            transform: translateY(-4px);
-            box-shadow: 0 6px 24px rgba(99, 102, 241, 0.4);
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
         }
 
         /* --- HERO SECTION --- */
@@ -168,6 +226,7 @@
             background: radial-gradient(circle, var(--glow) 0%, rgba(0, 0, 0, 0) 70%);
             z-index: -1;
             pointer-events: none;
+            animation: glowPulse 6s infinite ease-in-out;
         }
 
         .hero-grid {
@@ -182,6 +241,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: floatPortrait 6s ease-in-out infinite;
         }
 
         .portrait-section {
@@ -200,6 +260,11 @@
             object-position: center bottom;
             -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-img-cutout:hover {
+            transform: scale(1.02);
         }
 
         .badge {
@@ -214,6 +279,12 @@
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.5);
         }
 
         .badge-dot {
@@ -222,6 +293,7 @@
             background-color: #10b981;
             border-radius: 50%;
             box-shadow: 0 0 10px #10b981;
+            animation: dotPulse 2s infinite ease-in-out;
         }
 
         .greeting {
@@ -243,6 +315,20 @@
             background: var(--gradient-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        /* TYPING TEXT CURSOR ANIMATION */
+        .typed-cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--secondary-accent);
+            margin-left: 4px;
+            animation: blinkCursor 0.8s infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .hero-subtitle {
@@ -293,12 +379,12 @@
             display: flex;
             align-items: center;
             gap: 0.35rem;
-            transition: color 0.2s, transform 0.2s;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .quick-link:hover {
             color: var(--secondary-accent);
-            transform: translateX(2px);
+            transform: translateX(3px);
         }
 
         .btn {
@@ -310,7 +396,7 @@
             font-weight: 600;
             font-size: 0.95rem;
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn-primary {
@@ -321,8 +407,8 @@
 
         .btn-primary:hover {
             background: #4f46e5;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(99, 102, 241, 0.5);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 28px rgba(99, 102, 241, 0.55);
         }
 
         .btn-secondary {
@@ -334,8 +420,9 @@
 
         .btn-secondary:hover {
             border-color: var(--primary-accent);
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.02);
             background: rgba(30, 41, 59, 0.8);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         .stats-bar {
@@ -348,6 +435,12 @@
             border: 1px solid var(--card-border);
             border-radius: 18px;
             backdrop-filter: blur(12px);
+            transition: all 0.4s ease;
+        }
+
+        .stats-bar:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .stat-item h3 {
@@ -390,20 +483,44 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
+            perspective: 1000px;
         }
 
+        /* --- MOUSE HOVER CURSOR GLOW + 3D TILT CARDS --- */
         .card {
+            position: relative;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 2rem;
             backdrop-filter: blur(12px);
-            transition: all 0.25s ease;
+            transition: transform 0.2s ease-out, border-color 0.35s ease, box-shadow 0.35s ease;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.4), transparent 40%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
         }
 
         .card h3 {
@@ -431,6 +548,14 @@
             font-size: 0.825rem;
             padding: 0.35rem 0.75rem;
             border-radius: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .tag:hover {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.3);
+            color: #ffffff;
+            transform: translateY(-2px);
         }
 
         .publication-card {
@@ -441,6 +566,12 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(12px);
+            transition: all 0.4s ease;
+        }
+
+        .publication-card:hover {
+            border-color: rgba(99, 102, 241, 0.6);
+            box-shadow: 0 12px 35px rgba(99, 102, 241, 0.15);
         }
 
         .pub-tag {
@@ -469,6 +600,13 @@
             border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .pub-box:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--secondary-accent);
+            transform: translateY(-3px);
         }
 
         .pub-box h4 {
@@ -524,6 +662,11 @@
 
         .timeline-card li {
             margin-bottom: 0.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .timeline-card li:hover {
+            color: var(--text-main);
         }
 
         .project-link {
@@ -535,10 +678,12 @@
             align-items: center;
             gap: 0.25rem;
             margin-top: 1rem;
+            transition: all 0.3s ease;
         }
 
         .project-link:hover {
-            text-decoration: underline;
+            color: #38bdf8;
+            transform: translateX(4px);
         }
 
         footer {
@@ -557,13 +702,61 @@
         .social-links a {
             color: var(--text-muted);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
         }
 
         .social-links a:hover {
             color: var(--primary-accent);
+            transform: translateY(-2px);
         }
 
+        /* --- ANIMATION KEYFRAMES --- */
+        @keyframes fadeInPage {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        @keyframes dotPulse {
+            0%, 100% {
+                box-shadow: 0 0 10px #10b981;
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 18px #10b981;
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes floatPortrait {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* SCROLL REVEAL CLASS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE MOBILE STYLES --- */
         @media (max-width: 992px) {
             .hero-grid {
                 grid-template-columns: 1fr;
@@ -571,31 +764,71 @@
             }
             .portrait-wrapper {
                 order: -1;
-                margin-bottom: 2rem;
+                margin-bottom: 1.5rem;
             }
             .portrait-section {
                 width: 320px;
+                max-width: 100%;
             }
             .hero-actions, .cta-main, .cta-quick {
                 justify-content: center;
             }
+            .grid-3 {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
+            .menu-toggle {
+                display: flex;
             }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: rgba(6, 9, 19, 0.95);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--card-border);
+                transform: translateY(-150%);
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .hero-title {
+                font-size: 2.3rem;
+            }
+
             .cta-quick {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .publication-card {
+                padding: 1.5rem;
+            }
+
+            .back-to-top {
+                bottom: 1.25rem;
+                right: 1.25rem;
+                width: 42px;
+                height: 42px;
             }
         }
     </style>
 </head>
 <body>
+
+    <!-- DATA NODE PARTICLE CANVAS -->
+    <canvas id="particleCanvas"></canvas>
 
     <div class="hero-glow"></div>
 
@@ -603,7 +836,14 @@
     <nav>
         <div class="container">
             <a href="#hero" class="logo">MD MASUD <span>PARVEJ</span></a>
-            <ul class="nav-links">
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -622,12 +862,12 @@
     <section id="hero">
         <div class="container">
             <div class="hero-grid">
-                <div>
+                <div class="reveal active">
                     <div class="badge">
                         <span class="badge-dot"></span> Lead, Growth Operations @ Commure
                     </div>
-                    <div class="greeting">Hi, I'm Masud </div>
-                    <h1 class="hero-title">Architecting Business Growth Through <span class="gradient-text">Data Engineering & Analytics</span>.</h1>
+                    <div class="greeting">Hi, I'm Masud</div>
+                    <h1 class="hero-title">Architecting Business Growth Through <span class="gradient-text" id="typedText"></span><span class="typed-cursor">&nbsp;</span></h1>
                     <p class="hero-subtitle">
                         Data Analytics Leader driving revenue benchmarking, automated QA, predictive intelligence, and operational workflow efficiency.
                     </p>
@@ -656,24 +896,25 @@
                     </div>
                 </div>
 
-                <div class="portrait-wrapper">
+                <div class="portrait-wrapper reveal active">
                     <div class="portrait-section">
                         <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="profile-img-cutout">
                     </div>
                 </div>
             </div>
 
-            <div class="stats-bar">
+            <!-- ANIMATED NUMBER STATS BAR -->
+            <div class="stats-bar reveal">
                 <div class="stat-item">
-                    <h3>5+ Years</h3>
+                    <h3><span class="counter" data-target="5">0</span>+ Years</h3>
                     <p>Analytics & Operations Experience</p>
                 </div>
                 <div class="stat-item">
-                    <h3>15%+ Boost</h3>
+                    <h3><span class="counter" data-target="15">0</span>%+ Boost</h3>
                     <p>HRIS & System Data Accuracy</p>
                 </div>
                 <div class="stat-item">
-                    <h3>2 Award Wins</h3>
+                    <h3><span class="counter" data-target="2">0</span> Award Wins</h3>
                     <p>Star Achiever & Commando Awards</p>
                 </div>
                 <div class="stat-item">
@@ -687,12 +928,12 @@
     <!-- SKILLS SECTION -->
     <section id="skills">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2 class="section-title">Core Competencies & Stack</h2>
                 <p class="section-desc">Technologies, frameworks, and methodologies I leverage across data engineering and operational strategy.</p>
             </div>
             <div class="grid-3">
-                <div class="card">
+                <div class="card reveal">
                     <h3>Data Engineering & SQL</h3>
                     <div class="tags">
                         <span class="tag">PostgreSQL</span>
@@ -703,7 +944,7 @@
                         <span class="tag">Advanced Excel (VBA)</span>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card reveal">
                     <h3>BI & Visualization</h3>
                     <div class="tags">
                         <span class="tag">Power BI (PL-300)</span>
@@ -713,7 +954,7 @@
                         <span class="tag">Predictive Analytics</span>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card reveal">
                     <h3>Operations & Workflows</h3>
                     <div class="tags">
                         <span class="tag">Retool</span>
@@ -731,13 +972,13 @@
     <!-- WORK EXPERIENCE TIMELINE -->
     <section id="experience">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2 class="section-title">Detailed Experience Timeline</h2>
                 <p class="section-desc">A track record of driving operational scale, revenue cycle analytics, and strategic decision-making.</p>
             </div>
 
             <div class="timeline">
-                <div class="card timeline-card">
+                <div class="card timeline-card reveal">
                     <div class="timeline-header">
                         <div>
                             <h3 class="role">Commure</h3>
@@ -775,7 +1016,7 @@
                     </div>
                 </div>
 
-                <div class="card timeline-card">
+                <div class="card timeline-card reveal">
                     <div class="timeline-header">
                         <div>
                             <h3 class="role">Senior Data Analyst</h3>
@@ -792,7 +1033,7 @@
                     </ul>
                 </div>
 
-                <div class="card timeline-card">
+                <div class="card timeline-card reveal">
                     <div class="timeline-header">
                         <div>
                             <h3 class="role">Automation & Analytics Expert</h3>
@@ -809,7 +1050,7 @@
                     </ul>
                 </div>
 
-                <div class="card timeline-card">
+                <div class="card timeline-card reveal">
                     <div class="timeline-header">
                         <div>
                             <h3 class="role">Business Intelligence Executive</h3>
@@ -824,7 +1065,7 @@
                     </ul>
                 </div>
 
-                <div class="card timeline-card">
+                <div class="card timeline-card reveal">
                     <div class="timeline-header">
                         <div>
                             <h3 class="role">Business Development Specialist</h3>
@@ -844,12 +1085,12 @@
     <!-- RESEARCH & PUBLICATIONS SECTION -->
     <section id="research">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2 class="section-title">Research & Academic Publications</h2>
                 <p class="section-desc">Contributions to decision support systems, AI-augmented analytics, and evaluation frameworks.</p>
             </div>
 
-            <div class="publication-card">
+            <div class="publication-card reveal">
                 <span class="pub-tag">Conceptual Framework & Paper</span>
                 <h3 style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 0.75rem;">
                     Beyond the Dashboard: A Conceptual Framework for Evaluating Insight Quality in AI-Augmented Business Intelligence Systems
@@ -895,12 +1136,12 @@
     <!-- GITHUB FEATURED PROJECTS -->
     <section id="projects">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2 class="section-title">Featured Engineering Projects</h2>
                 <p class="section-desc">Open-source repositories focused on Revenue Cycle Management, SQL Analytics, and AI Quality Frameworks.</p>
             </div>
             <div class="grid-3">
-                <div class="card">
+                <div class="card reveal">
                     <h3>RCM Revenue Benchmarking</h3>
                     <p>Python and PostgreSQL analytical benchmarking pipeline for healthcare Revenue Cycle Management (RCM) KPIs, tracking collection rates, claim denials, and clean claim metrics.</p>
                     <div class="tags">
@@ -911,7 +1152,7 @@
                     <a href="https://github.com/mprantikk/rcm-revenue-benchmarking" target="_blank" class="project-link">View Repository &rarr;</a>
                 </div>
 
-                <div class="card">
+                <div class="card reveal">
                     <h3>SQL Revenue Analytics</h3>
                     <p>PostgreSQL schema and querying suite built for business intelligence, performing revenue trends analysis, customer segmentation, and automated data integrity protocols.</p>
                     <div class="tags">
@@ -922,7 +1163,7 @@
                     <a href="https://github.com/mprantikk/sql-revenue-analytics" target="_blank" class="project-link">View Repository &rarr;</a>
                 </div>
 
-                <div class="card">
+                <div class="card reveal">
                     <h3>AI Insight Quality Evaluation</h3>
                     <p>Framework for evaluating the precision, relevance, and actionability of automated AI and LLM insights in operational environments.</p>
                     <div class="tags">
@@ -940,7 +1181,7 @@
     <section id="certifications">
         <div class="container">
             <div class="grid-3">
-                <div class="card">
+                <div class="card reveal">
                     <h3>Professional Certifications</h3>
                     <ul style="list-style: none; color: var(--text-muted);">
                         <li style="margin-bottom: 0.85rem;">
@@ -970,7 +1211,7 @@
                     </ul>
                 </div>
 
-                <div class="card">
+                <div class="card reveal">
                     <h3>Academic Education</h3>
                     <ul style="list-style: none; color: var(--text-muted);">
                         <li style="margin-bottom: 1.75rem;">
@@ -986,7 +1227,7 @@
                     </ul>
                 </div>
 
-                <div class="card">
+                <div class="card reveal">
                     <h3>Professional Development</h3>
                     <ul style="list-style: none; color: var(--text-muted); font-size: 0.9rem;">
                         <li style="margin-bottom: 0.6rem;">• Data Strategy for Leaders (LinkedIn Learning)</li>
@@ -1000,8 +1241,9 @@
         </div>
     </section>
 
+    <!-- FOOTER / CONTACT -->
     <footer id="contact">
-        <div class="container">
+        <div class="container reveal">
             <h2 class="section-title">Get In Touch</h2>
             <p class="section-desc">Dhaka, Bangladesh • mprantikk@gmail.com • +880 1878 939548</p>
 
@@ -1016,6 +1258,212 @@
             </p>
         </div>
     </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT ANIMATIONS -->
+    <script>
+        // 1. Mobile Menu Drawer Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // 2. Dynamic Auto-Typing Effect in Hero Title
+        const words = ["Data Engineering & Analytics.", "Predictive AI Intelligence.", "Growth Operations Strategy.", "Revenue Cycle Analytics."];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedTextElement = document.getElementById("typedText");
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typedTextElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedTextElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2200; // Pause at full word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 400; // Pause before typing next word
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+        document.addEventListener("DOMContentLoaded", typeEffect);
+
+        // 3. Mouse Glow Cursor + 3D Tilt Effect on Cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+
+                // Subtle 3D Tilt Calculation
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -6;
+                const rotateY = ((x - centerX) / centerX) * 6;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+            });
+        });
+
+        // 4. Animated Number Counter on Scroll
+        let countersTriggered = false;
+        function animateCounters() {
+            const statsBar = document.querySelector('.stats-bar');
+            if (!statsBar) return;
+            const rect = statsBar.getBoundingClientRect();
+            
+            if (rect.top <= window.innerHeight && !countersTriggered) {
+                countersTriggered = true;
+                document.querySelectorAll('.counter').forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const speed = target / 30;
+                    const updateCount = () => {
+                        count += speed;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count);
+                            setTimeout(updateCount, 40);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+            }
+        }
+
+        // 5. Scroll Reveal & Navbar Link Highlight
+        const sections = document.querySelectorAll('section, footer');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 80) {
+                    element.classList.add('active');
+                }
+            });
+
+            // Highlight Active Section Link in Navbar
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 120)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${currentSection}`) {
+                    item.classList.add('active');
+                }
+            });
+
+            animateCounters();
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // 6. Data Node Particle Background Canvas Effect
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(99, 102, 241, 0.3)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.floor((canvas.width * canvas.height) / 18000);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function handleParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 110) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 - distance / 800})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(handleParticles);
+        }
+
+        initParticles();
+        handleParticles();
+    </script>
 
 </body>
 </html>
