@@ -206,7 +206,7 @@
             box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
         }
 
-        /* --- HERO SECTION STACKING --- */
+        /* --- HERO SECTION --- */
         #hero {
             min-height: 92vh;
             display: flex;
@@ -229,20 +229,23 @@
             animation: glowPulse 6s infinite ease-in-out;
         }
 
-        .hero-container-relative {
+        /* SIDE-BY-SIDE GRID LAYOUT (TEXT LEFT | IMAGE RIGHT) */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 2rem;
+            align-items: center;
             position: relative;
-            width: 100%;
         }
 
         .hero-text-content {
             position: relative;
             z-index: 10;
-            pointer-events: auto;
-            max-width: 840px;
         }
 
+        /* HERO TITLE STYLING */
         .hero-title {
-            font-size: 3.25rem;
+            font-size: 3.1rem;
             font-weight: 800;
             line-height: 1.2;
             letter-spacing: -1.5px;
@@ -265,6 +268,7 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* TYPING TEXT CURSOR ANIMATION */
         .typed-cursor {
             display: inline-block;
             width: 3px;
@@ -282,22 +286,24 @@
             font-size: 1.1rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
-            max-width: 540px;
+            max-width: 520px;
         }
 
+        /* PORTRAIT SIDE WRAPPER (RIGHT COLUMN) */
         .portrait-wrapper {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-            pointer-events: none;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
             will-change: transform;
             animation: floatPortrait 5s ease-in-out infinite;
+            z-index: 2;
         }
 
         .portrait-section {
             position: relative;
-            width: 440px;
+            width: 100%;
+            max-width: 420px;
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -306,16 +312,16 @@
         .profile-img-cutout {
             width: 100%;
             height: auto;
+            max-height: 480px;
             display: block;
             object-fit: contain;
             object-position: center bottom;
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0) 100%);
-            opacity: 0.85;
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+            opacity: 0.95;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
             will-change: transform;
             transform: translateZ(0);
-            pointer-events: auto;
         }
 
         .profile-img-cutout:hover {
@@ -377,7 +383,7 @@
             gap: 1.25rem;
             padding-top: 0.75rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            max-width: 540px;
+            max-width: 520px;
         }
 
         .cta-quick span {
@@ -451,7 +457,7 @@
         /* --- ENHANCED HIGH-IMPACT ANIMATED STATS BAR --- */
         .stats-bar-wrapper {
             position: relative;
-            margin-top: 4.5rem;
+            margin-top: 3.5rem;
             padding: 2px;
             border-radius: 22px;
             background: linear-gradient(90deg, #6366f1, #a855f7, #06b6d4, #6366f1);
@@ -465,7 +471,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 2rem;
-            padding: 2.75rem 2.5rem;
+            padding: 2.5rem 2rem;
             background: rgba(6, 9, 19, 0.92);
             border-radius: 20px;
             backdrop-filter: blur(16px);
@@ -483,7 +489,7 @@
         }
 
         .stat-item h3 {
-            font-size: 2.5rem; /* Larger font size */
+            font-size: 2.5rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             background: var(--gradient-1);
@@ -499,7 +505,7 @@
 
         .stat-item p {
             color: var(--text-muted);
-            font-size: 0.95rem; /* Larger description font size */
+            font-size: 0.95rem;
             font-weight: 600;
             line-height: 1.4;
         }
@@ -512,7 +518,7 @@
 
         @keyframes floatStats {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-6px); }
         }
 
         section {
@@ -802,7 +808,7 @@
                 transform: translateY(0) translateZ(0); 
             }
             50% { 
-                transform: translateY(-12px) translateZ(0); 
+                transform: translateY(-10px) translateZ(0); 
             }
         }
 
@@ -820,12 +826,13 @@
 
         /* --- RESPONSIVE MOBILE STYLES --- */
         @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
             .portrait-wrapper {
-                position: relative;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                margin-bottom: 2rem;
+                order: -1;
+                margin-bottom: 1.5rem;
             }
             .hero-title {
                 font-size: 2.3rem;
@@ -836,6 +843,7 @@
             .portrait-section {
                 width: 320px;
                 max-width: 100%;
+                margin: 0 auto;
             }
             .hero-text-content {
                 text-align: center;
@@ -936,54 +944,58 @@
 
     <!-- HERO SECTION -->
     <section id="hero">
-        <div class="container hero-container-relative">
+        <div class="container">
             
-            <!-- ABSOLUTELY FIXED PORTRAIT WRAPPER -->
-            <div class="portrait-wrapper reveal active">
-                <div class="portrait-section">
-                    <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="profile-img-cutout">
-                </div>
-            </div>
-
-            <!-- FOREGROUND OVERLAY TEXT CONTENT -->
-            <div class="hero-text-content reveal active">
-                <div class="badge">
-                    <span class="badge-dot"></span> Lead, Growth Operations @ Commure
-                </div>
-                <div class="greeting">Hi, I'm Masud</div>
-                <h1 class="hero-title">
-                    <span class="hero-title-line1">Architecting Business Growth</span>
-                    <span class="hero-title-line2">Through <span class="gradient-text" id="typedText"></span><span class="typed-cursor">&nbsp;</span></span>
-                </h1>
-                <p class="hero-subtitle">
-                    Data Analytics Leader driving revenue benchmarking, automated QA, predictive intelligence, and operational workflow efficiency.
-                </p>
-
-                <div class="hero-actions">
-                    <div class="cta-main">
-                        <a href="#experience" class="btn btn-primary">
-                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11 0 2 .89 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
-                            Explore Experience
-                        </a>
-                        <a href="#research" class="btn btn-secondary">
-                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.82 9L12 4.57 20.18 9 12 13.43 3.82 9zM17 12.52l-5 2.73-5-2.53-2 1.09 7 3.54 7-3.82z"/></svg>
-                            Read Publication (IQE)
-                        </a>
+            <div class="hero-grid">
+                
+                <!-- LEFT COLUMN: HERO TEXT & CTA -->
+                <div class="hero-text-content reveal active">
+                    <div class="badge">
+                        <span class="badge-dot"></span> Lead, Growth Operations @ Commure
                     </div>
+                    <div class="greeting">Hi, I'm Masud</div>
+                    <h1 class="hero-title">
+                        <span class="hero-title-line1">Architecting Business Growth</span>
+                        <span class="hero-title-line2">Through <span class="gradient-text" id="typedText"></span><span class="typed-cursor">&nbsp;</span></span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Data Analytics Leader driving revenue benchmarking, automated QA, predictive intelligence, and operational workflow efficiency.
+                    </p>
 
-                    <div class="cta-quick">
-                        <span>Quick Access:</span>
-                        <div class="quick-links">
-                            <a href="#projects" class="quick-link">Projects &rarr;</a>
-                            <a href="https://github.com/mprantikk" target="_blank" class="quick-link">GitHub &rarr;</a>
-                            <a href="https://linkedin.com/in/mprantikk" target="_blank" class="quick-link">LinkedIn &rarr;</a>
-                            <a href="#certifications" class="quick-link">Education &rarr;</a>
+                    <div class="hero-actions">
+                        <div class="cta-main">
+                            <a href="#experience" class="btn btn-primary">
+                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11 0 2 .89 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                                Explore Experience
+                            </a>
+                            <a href="#research" class="btn btn-secondary">
+                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.82 9L12 4.57 20.18 9 12 13.43 3.82 9zM17 12.52l-5 2.73-5-2.53-2 1.09 7 3.54 7-3.82z"/></svg>
+                                Read Publication (IQE)
+                            </a>
+                        </div>
+
+                        <div class="cta-quick">
+                            <span>Quick Access:</span>
+                            <div class="quick-links">
+                                <a href="#projects" class="quick-link">Projects &rarr;</a>
+                                <a href="https://github.com/mprantikk" target="_blank" class="quick-link">GitHub &rarr;</a>
+                                <a href="https://linkedin.com/in/mprantikk" target="_blank" class="quick-link">LinkedIn &rarr;</a>
+                                <a href="#certifications" class="quick-link">Education &rarr;</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- RIGHT COLUMN: PORTRAIT CUTOUT RIGHT BESIDE TEXT -->
+                <div class="portrait-wrapper reveal active">
+                    <div class="portrait-section">
+                        <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="profile-img-cutout">
+                    </div>
+                </div>
+
             </div>
 
-            <!-- ENHANCED GLOWING ANIMATED STATS BAR -->
+            <!-- ENHANCED GLOWING ANIMATED STATS BAR BELOW BOTH -->
             <div class="stats-bar-wrapper reveal">
                 <div class="stats-bar">
                     <div class="stat-item">
