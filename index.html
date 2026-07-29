@@ -32,6 +32,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- LENIS SMOOTH SCROLL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
+
     <style>
         :root {
             --bg-color: #060913;
@@ -44,6 +47,7 @@
             --text-muted: #94a3b8;
             --gradient-1: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
             --glow: rgba(99, 102, 241, 0.18);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -53,7 +57,7 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            scroll-padding-top: 85px;
         }
 
         body {
@@ -62,18 +66,19 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
-            animation: fadeInPage 1s ease-out;
+            animation: fadeInPage 0.8s var(--ease-out-expo);
         }
 
         /* --- BACKGROUND CANVAS PARTICLES --- */
         #particleCanvas {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
             pointer-events: none;
+            will-change: transform;
         }
 
         /* RESPONSIVE FLUID CONTAINER */
@@ -94,7 +99,7 @@
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--card-border);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s var(--ease-out-expo);
         }
 
         nav .container {
@@ -110,7 +115,7 @@
             color: var(--text-main);
             text-decoration: none;
             letter-spacing: -0.5px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s var(--ease-out-expo);
             z-index: 1001;
         }
 
@@ -148,7 +153,7 @@
             bottom: -4px;
             left: 0;
             background: var(--gradient-1);
-            transition: width 0.3s ease;
+            transition: width 0.3s var(--ease-out-expo);
         }
 
         .nav-links a:hover::after,
@@ -198,15 +203,16 @@
             font-size: 1.25rem;
             backdrop-filter: blur(12px);
             z-index: 999;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s var(--ease-out-expo);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            will-change: transform;
         }
 
         .back-to-top:hover {
             background: var(--primary-accent);
             border-color: var(--primary-accent);
-            transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+            transform: translateY(-6px) scale(1.08);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
         }
 
         /* FLOATING WHATSAPP BUTTON (LEFT) */
@@ -225,13 +231,14 @@
             text-decoration: none;
             z-index: 999;
             box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s var(--ease-out-expo);
             animation: whatsappPulse 3s infinite;
+            will-change: transform;
         }
 
         .floating-whatsapp:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+            transform: translateY(-6px) scale(1.1);
+            box-shadow: 0 10px 32px rgba(37, 211, 102, 0.75);
             background: #128c7e;
         }
 
@@ -240,7 +247,7 @@
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
             }
             70% {
-                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+                box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
             }
             100% {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
@@ -303,24 +310,32 @@
             white-space: nowrap;
         }
 
-        .hero-title .gradient-text {
+        /* FADE & SLIDE TEXT ANIMATION CONTAINER */
+        .animated-text-container {
+            display: inline-block;
+            position: relative;
+            vertical-align: bottom;
+        }
+
+        .animated-word {
+            display: inline-block;
             background: var(--gradient-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+            will-change: opacity, transform;
         }
 
-        /* TYPING TEXT CURSOR ANIMATION */
-        .typed-cursor {
-            display: inline-block;
-            width: 3px;
-            background-color: var(--secondary-accent);
-            margin-left: 4px;
-            animation: blinkCursor 0.8s infinite;
+        .animated-word.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        @keyframes blinkCursor {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .animated-word.exit {
+            opacity: 0;
+            transform: translateY(-18px);
         }
 
         .hero-subtitle {
@@ -330,14 +345,12 @@
             max-width: 680px;
         }
 
-        /* PORTRAIT WRAPPER */
+        /* STATIC PORTRAIT WRAPPER (NO UP/DOWN FLOAT) */
         .portrait-wrapper {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            will-change: transform;
-            animation: floatPortrait 5s ease-in-out infinite;
             z-index: 2;
         }
 
@@ -360,7 +373,7 @@
             -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
             opacity: 0.95;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            transition: transform 0.5s var(--ease-out-expo), opacity 0.4s ease;
             will-change: transform;
             transform: translateZ(0);
         }
@@ -449,12 +462,12 @@
             display: flex;
             align-items: center;
             gap: 0.35rem;
-            transition: color 0.3s ease, transform 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s var(--ease-out-expo);
         }
 
         .quick-link:hover {
             color: var(--secondary-accent);
-            transform: translateX(3px);
+            transform: translateX(4px);
         }
 
         .btn {
@@ -466,7 +479,7 @@
             font-weight: 600;
             font-size: 1rem;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s var(--ease-out-expo);
         }
 
         .btn-primary {
@@ -520,7 +533,7 @@
 
         .stat-item {
             text-align: center;
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s var(--ease-out-expo);
             padding: 0.5rem;
             border-radius: 12px;
         }
@@ -598,9 +611,10 @@
             border-radius: 18px;
             padding: 2.25rem;
             backdrop-filter: blur(12px);
-            transition: transform 0.2s ease-out, border-color 0.35s ease, box-shadow 0.35s ease;
+            transition: transform 0.25s var(--ease-out-expo), border-color 0.35s ease, box-shadow 0.35s ease;
             overflow: hidden;
             transform-style: preserve-3d;
+            will-change: transform;
         }
 
         .card::before {
@@ -624,7 +638,7 @@
 
         .card:hover {
             border-color: rgba(99, 102, 241, 0.5);
-            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
         }
 
         .card h3 {
@@ -652,7 +666,7 @@
             font-size: 0.85rem;
             padding: 0.4rem 0.85rem;
             border-radius: 8px;
-            transition: all 0.25s ease;
+            transition: all 0.3s var(--ease-out-expo);
         }
 
         .tag:hover {
@@ -670,7 +684,7 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(12px);
-            transition: all 0.4s ease;
+            transition: all 0.4s var(--ease-out-expo);
         }
 
         .publication-card:hover {
@@ -704,13 +718,13 @@
             border: 1px solid var(--card-border);
             border-radius: 14px;
             padding: 1.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.35s var(--ease-out-expo);
         }
 
         .pub-box:hover {
             background: rgba(255, 255, 255, 0.06);
             border-color: var(--secondary-accent);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
         }
 
         .pub-box h4 {
@@ -783,12 +797,12 @@
             align-items: center;
             gap: 0.35rem;
             margin-top: 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s var(--ease-out-expo);
         }
 
         .project-link:hover {
             color: #38bdf8;
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
 
         footer {
@@ -809,19 +823,19 @@
             color: var(--text-muted);
             text-decoration: none;
             font-size: 1.05rem;
-            transition: color 0.3s ease, transform 0.2s ease;
+            transition: color 0.3s ease, transform 0.3s var(--ease-out-expo);
             display: inline-block;
         }
 
         .social-links a:hover {
             color: var(--primary-accent);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
-        /* --- ANIMATION KEYFRAMES --- */
+        /* --- ANIMATION KEYFRAMES & FLUID REVEALS --- */
         @keyframes fadeInPage {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes glowPulse {
@@ -846,25 +860,28 @@
             }
         }
 
-        @keyframes floatPortrait {
-            0%, 100% { 
-                transform: translateY(0) translateZ(0); 
-            }
-            50% { 
-                transform: translateY(-10px) translateZ(0); 
-            }
-        }
-
+        /* SCROLL REVEAL ANIMATION */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(38px) scale(0.985);
+            transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+            will-change: opacity, transform;
         }
 
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
+
+        /* STAGGER DELAYS FOR SMOOTH CASCADING REVEALS */
+        .grid-3 .card:nth-child(1) { transition-delay: 0.05s; }
+        .grid-3 .card:nth-child(2) { transition-delay: 0.15s; }
+        .grid-3 .card:nth-child(3) { transition-delay: 0.25s; }
+
+        .pub-grid .pub-box:nth-child(1) { transition-delay: 0.05s; }
+        .pub-grid .pub-box:nth-child(2) { transition-delay: 0.12s; }
+        .pub-grid .pub-box:nth-child(3) { transition-delay: 0.19s; }
+        .pub-grid .pub-box:nth-child(4) { transition-delay: 0.26s; }
 
         /* --- RESPONSIVE MOBILE & TABLET BREAKPOINTS --- */
         @media (max-width: 1200px) {
@@ -875,8 +892,7 @@
                 font-size: 3rem;
             }
             .stats-bar {
-                grid-template-columns: repeat(2, 1fr); /* 2x2 grid for tablet screens */
-                gap: 1.5rem;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -896,7 +912,6 @@
             .hero-title {
                 font-size: 2.4rem;
             }
-            /* ALLOW TITLE WRAPPING ON NARROW SCREENS TO PREVENT OVERFLOW */
             .hero-title-line1, .hero-title-line2 {
                 white-space: normal !important;
             }
@@ -941,7 +956,7 @@
                 gap: 1.5rem;
                 border-bottom: 1px solid var(--card-border);
                 transform: translateY(-150%);
-                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                transition: transform 0.4s var(--ease-out-expo);
             }
 
             .nav-links.active {
@@ -958,7 +973,7 @@
             }
 
             .stats-bar {
-                grid-template-columns: 1fr; /* Single column on phones */
+                grid-template-columns: 1fr;
                 gap: 1.25rem;
             }
 
@@ -984,7 +999,7 @@
 </head>
 <body>
 
-    <!-- DATA NODE PARTICLE CANVAS -->
+    <!-- DATA NODE PARTICLE CANVAS (FIXED IN BACKGROUND) -->
     <canvas id="particleCanvas"></canvas>
 
     <div class="hero-glow"></div>
@@ -1036,7 +1051,7 @@
                     <div class="greeting">Hi, I'm Masud</div>
                     <h1 class="hero-title">
                         <span class="hero-title-line1">Architecting Business Growth</span>
-                        <span class="hero-title-line2">Through <span class="gradient-text" id="typedText"></span><span class="typed-cursor">&nbsp;</span></span>
+                        <span class="hero-title-line2">Through <span class="animated-text-container"><span class="animated-word visible" id="animatedText">Data Analytics.</span></span></span>
                     </h1>
                     <p class="hero-subtitle">
                         Data Analytics Leader driving revenue benchmarking, automated QA, predictive intelligence, and operational workflow efficiency.
@@ -1066,7 +1081,7 @@
                     </div>
                 </div>
 
-                <!-- RIGHT COLUMN: PORTRAIT CUTOUT -->
+                <!-- RIGHT COLUMN: STATIC PORTRAIT CUTOUT (NO FLOAT MOTION) -->
                 <div class="portrait-wrapper reveal active">
                     <div class="portrait-section">
                         <img src="masud.png" alt="MD Masud Parvej - Portrait Cutout" class="profile-img-cutout">
@@ -1435,9 +1450,38 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT ANIMATIONS -->
+    <!-- LENIS SMOOTH SCROLL ENGINE SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <!-- INTERACTIVE HIGH-PERFORMANCE JAVASCRIPT ANIMATIONS -->
     <script>
-        // 1. Mobile Menu Drawer Toggle
+        // 1. INITIALIZE LENIS SMOOTH INERTIA SCROLL
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            wheelMultiplier: 1.0,
+            touchMultiplier: 1.5,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Sync Anchor Links with Lenis Engine
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    lenis.scrollTo(target, { offset: -70 });
+                }
+            });
+        });
+
+        // 2. Mobile Menu Drawer Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
@@ -1451,39 +1495,35 @@
             });
         });
 
-        // 2. Dynamic Auto-Typing Effect in Hero Title
+        // 3. SLEEK FADE-AND-SLIDE TEXT ANIMATION
         const words = ["Data Analytics.", "Data Engineering.", "Growth Operations.", "Predictive AI."];
         let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typedTextElement = document.getElementById("typedText");
+        const animatedTextElement = document.getElementById("animatedText");
 
-        function typeEffect() {
-            const currentWord = words[wordIndex];
-            if (isDeleting) {
-                typedTextElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typedTextElement.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-            }
+        function rotateWord() {
+            // Fade & Slide Out current word
+            animatedTextElement.classList.remove('visible');
+            animatedTextElement.classList.add('exit');
 
-            let typeSpeed = isDeleting ? 40 : 80;
-
-            if (!isDeleting && charIndex === currentWord.length) {
-                typeSpeed = 2200; // Pause at full word
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
+            setTimeout(() => {
+                // Update text content
                 wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 400; // Pause before typing next word
-            }
+                animatedTextElement.textContent = words[wordIndex];
 
-            setTimeout(typeEffect, typeSpeed);
+                // Reset positioning for new word
+                animatedTextElement.classList.remove('exit');
+                
+                // Trigger Fade & Slide In
+                setTimeout(() => {
+                    animatedTextElement.classList.add('visible');
+                }, 50);
+            }, 450); // Matches CSS transition time
         }
-        document.addEventListener("DOMContentLoaded", typeEffect);
 
-        // 3. Mouse Glow Cursor + 3D Tilt Effect on Cards
+        // Loop word rotation every 3 seconds
+        setInterval(rotateWord, 3000);
+
+        // 4. Mouse Glow Cursor + Hardware Accelerated 3D Tilt
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const rect = card.getBoundingClientRect();
@@ -1492,11 +1532,10 @@
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
 
-                // Subtle 3D Tilt Calculation
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -6;
-                const rotateY = ((x - centerX) / centerX) * 6;
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
             });
@@ -1506,72 +1545,69 @@
             });
         });
 
-        // 4. Animated Number Counter on Scroll
+        // 5. Animated Number Counter Function
         let countersTriggered = false;
         function animateCounters() {
-            const statsBarWrapper = document.querySelector('.stats-bar-wrapper');
-            if (!statsBarWrapper) return;
-            const rect = statsBarWrapper.getBoundingClientRect();
-            
-            if (rect.top <= window.innerHeight && !countersTriggered) {
-                countersTriggered = true;
-                document.querySelectorAll('.counter').forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    let count = 0;
-                    const speed = target / 30;
-                    const updateCount = () => {
-                        count += speed;
-                        if (count < target) {
-                            counter.innerText = Math.ceil(count);
-                            setTimeout(updateCount, 40);
-                        } else {
-                            counter.innerText = target;
-                        }
-                    };
-                    updateCount();
-                });
-            }
+            if (countersTriggered) return;
+            countersTriggered = true;
+            document.querySelectorAll('.counter').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const speed = target / 25;
+                const updateCount = () => {
+                    count += speed;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(updateCount, 35);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
         }
 
-        // 5. Scroll Reveal & Navbar Link Highlight
+        // 6. INTERSECTION OBSERVER FOR BUTTER-SMOOTH SCROLL REVEALS
+        const revealObserverOptions = {
+            root: null,
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if (entry.target.classList.contains('stats-bar-wrapper')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, revealObserverOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // 7. Active Section Highlight Observer in Navbar
         const sections = document.querySelectorAll('section, footer');
         const navItems = document.querySelectorAll('.nav-links a');
 
-        function revealOnScroll() {
-            const reveals = document.querySelectorAll('.reveal');
-            const windowHeight = window.innerHeight;
-
-            reveals.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 80) {
-                    element.classList.add('active');
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentSectionId = entry.target.getAttribute('id');
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('href') === `#${currentSectionId}`) {
+                            item.classList.add('active');
+                        }
+                    });
                 }
             });
+        }, { threshold: 0.35 });
 
-            // Highlight Active Section Link in Navbar
-            let currentSection = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - 120)) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
+        sections.forEach(section => navObserver.observe(section));
 
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === `#${currentSection}`) {
-                    item.classList.add('active');
-                }
-            });
-
-            animateCounters();
-        }
-
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
-
-        // 6. Data Node Particle Background Canvas Effect
+        // 8. Background Data Particle Node Canvas
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -1588,8 +1624,8 @@
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 2 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.4;
-                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.speedX = (Math.random() - 0.5) * 0.35;
+                this.speedY = (Math.random() - 0.5) * 0.35;
             }
             update() {
                 this.x += this.speedX;
@@ -1607,7 +1643,7 @@
 
         function initParticles() {
             particles = [];
-            const count = Math.floor((canvas.width * canvas.height) / 18000);
+            const count = Math.floor((canvas.width * canvas.height) / 19000);
             for (let i = 0; i < count; i++) {
                 particles.push(new Particle());
             }
