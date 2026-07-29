@@ -131,6 +131,7 @@
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 2rem;
             list-style: none;
         }
@@ -1022,6 +1023,7 @@
                 <li><a href="#research">Research</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#certifications">Education & Certs</a></li>
+                <li><a href="https://mprantikk.github.io/resume/" target="_blank">Resume</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -1501,26 +1503,20 @@
         const animatedTextElement = document.getElementById("animatedText");
 
         function rotateWord() {
-            // Fade & Slide Out current word
             animatedTextElement.classList.remove('visible');
             animatedTextElement.classList.add('exit');
 
             setTimeout(() => {
-                // Update text content
                 wordIndex = (wordIndex + 1) % words.length;
                 animatedTextElement.textContent = words[wordIndex];
-
-                // Reset positioning for new word
                 animatedTextElement.classList.remove('exit');
                 
-                // Trigger Fade & Slide In
                 setTimeout(() => {
                     animatedTextElement.classList.add('visible');
                 }, 50);
-            }, 450); // Matches CSS transition time
+            }, 450);
         }
 
-        // Loop word rotation every 3 seconds
         setInterval(rotateWord, 3000);
 
         // 4. Mouse Glow Cursor + Hardware Accelerated 3D Tilt
