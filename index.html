@@ -338,7 +338,7 @@
                 <li><a href="#research">Research</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#certifications">Education & Certs</a></li>
-                <li><a href="https://mprantikk.github.io/resume/" target="_blank">Resume</a></li>
+                <li><a href="#resume">Resume</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -751,6 +751,22 @@
         </div>
     </section>
 
+    <!-- RESUME (EMBEDDED) -->
+    <section id="resume">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Resume</h2>
+                <p class="section-desc">My two-page resume, right here. Download it as a PDF or open it in a separate tab.</p>
+                <div class="cta-main" style="margin-top: 1.5rem;">
+                    <a href="https://mprantikk.github.io/resume/" target="_blank" class="btn btn-secondary">Open full resume &nearr;</a>
+                </div>
+            </div>
+            <div id="resumeWrap" style="position: relative; max-width: 850px; margin: 0 auto; overflow: hidden; border-radius: 12px;">
+                <iframe id="resumeFrame" src="https://mprantikk.github.io/resume/" title="Md. Masud Parvej - Resume" scrolling="no" loading="lazy" style="border: 0; display: block; width: 850px; height: 2400px; transform-origin: top left;"></iframe>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER / CONTACT -->
     <footer id="contact">
         <div class="container reveal">
@@ -989,6 +1005,32 @@
 
         initParticles();
         handleParticles();
+    </script>
+
+    <!-- RESUME EMBED: scale the A4 pages to fit the screen -->
+    <script>
+        (function () {
+            var frame = document.getElementById('resumeFrame');
+            var wrap = document.getElementById('resumeWrap');
+            if (!frame || !wrap) return;
+            function fit() {
+                var W = 850;
+                var scale = Math.min(1, wrap.clientWidth / W);
+                var h = 2400;
+                try {
+                    var pages = frame.contentDocument.querySelectorAll('.resume-page');
+                    var last = pages[pages.length - 1];
+                    if (last) h = Math.ceil(last.offsetTop + last.offsetHeight);
+                } catch (e) {}
+                frame.style.width = W + 'px';
+                frame.style.height = h + 'px';
+                frame.style.transform = 'scale(' + scale + ')';
+                wrap.style.height = (h * scale) + 'px';
+            }
+            frame.addEventListener('load', function () { fit(); setTimeout(fit, 400); setTimeout(fit, 1500); });
+            window.addEventListener('resize', fit);
+            fit();
+        })();
     </script>
 
 </body>
