@@ -155,6 +155,10 @@ footer{padding:28px 0 48px;color:var(--mut);font-size:.9rem;border-top:1px solid
 @keyframes li{from{opacity:0;transform:translateX(-12px)}}
 .feat{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:30px;align-items:center}
 .ringbox{text-align:center}
+.ludo{width:180px;height:180px;display:block;margin-inline:auto}
+.ludo .hop{animation:hop 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes hop{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.ludo .hop{animation:none}}
 .ring{width:190px;height:190px;transform:rotate(-90deg)}
 .ring circle{fill:none;stroke-width:13;stroke-linecap:butt}
 .ring .t{stroke:rgba(255,255,255,.12)}
@@ -355,8 +359,24 @@ h2{position:static}
 <div class="proj"><a href="https://github.com/mprantikk/rcm-revenue-benchmarking" target="_blank" rel="noopener">RCM Revenue Benchmarking</a><p>Scores the five core RCM KPIs by payer against industry targets.</p><span>Python, MySQL</span></div>
 <div class="proj"><a href="https://github.com/mprantikk/sql-revenue-analytics" target="_blank" rel="noopener">SQL Revenue Analytics</a><p>RFM segmentation, cohort retention and CLV in SQL, with a data-quality test suite.</p><span>PostgreSQL</span></div>
 <div class="proj"><a href="https://github.com/mprantikk/ai-insight-quality-evaluation" target="_blank" rel="noopener">AI Insight Quality Evaluation</a><p>A framework for judging AI-generated insights, with a tested Python implementation.</p><span>Python, research</span></div>
-<p class="cm" style="margin:28px 0 4px">Side project</p>
-<div class="proj"><a href="https://github.com/mprantikk/masud-gaming-hub" target="_blank" rel="noopener">Kolabagan Games</a><p>A multiplayer game portal for playing with friends: join by link or email invite, with Ludo (classic, quick and 2v2 teams), Chess against a robot, Twenty-Nine and a Dhaka-themed Monopoly.</p><span>Google Apps Script, Google Sheets, JavaScript</span></div>
+<p class="cm" style="margin:28px 0 10px">Side project</p>
+<div class="feat"><div>
+<h3>Kolabagan Games: game night with friends, online</h3>
+<p>A multiplayer game portal built on Google Apps Script with a Google Sheets backend. Friends join by link or email invite, matches start once everyone is in, and robots can fill a seat or take over a stalled turn.</p>
+<p class="tags">Google Apps Script, Google Sheets, JavaScript</p>
+<a class="btn alt" href="https://github.com/mprantikk/masud-gaming-hub" target="_blank" rel="noopener">Source code</a>
+</div><div class="ringbox">
+<svg class="ludo" viewBox="0 0 150 150" role="img" aria-label="Illustration of a Ludo board with four coloured corners and tokens">
+<rect x="1" y="1" width="148" height="148" rx="10" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.18)"/>
+<rect x="6" y="6" width="54" height="54" rx="7" fill="#ffc93c"/><rect x="90" y="6" width="54" height="54" rx="7" fill="#7de8bd"/>
+<rect x="6" y="90" width="54" height="54" rx="7" fill="#8aa2ff"/><rect x="90" y="90" width="54" height="54" rx="7" fill="#ff8a80"/>
+<g fill="#0a1a33"><rect x="18" y="18" width="30" height="30" rx="5"/><rect x="102" y="18" width="30" height="30" rx="5"/><rect x="18" y="102" width="30" height="30" rx="5"/><rect x="102" y="102" width="30" height="30" rx="5"/></g>
+<g fill="none" stroke="rgba(255,255,255,.22)" stroke-width="1"><path d="M60 6V60M70 6V60M80 6V60M90 6V60M60 90V144M70 90V144M80 90V144M90 90V144M6 60H60M6 70H60M6 80H60M6 90H60M90 60H144M90 70H144M90 80H144M90 90H144M60 16H90M60 26H90M60 36H90M60 46H90M60 104H90M60 114H90M60 124H90M60 134H90M16 60V90M26 60V90M36 60V90M46 60V90M104 60V90M114 60V90M124 60V90M134 60V90"/></g>
+<path d="M60 60L75 75L60 90Z" fill="#8aa2ff"/><path d="M60 60L75 75L90 60Z" fill="#ffc93c"/><path d="M90 60L75 75L90 90Z" fill="#7de8bd"/><path d="M60 90L75 75L90 90Z" fill="#ff8a80"/>
+<g stroke="#0a1a33" stroke-width="1.5"><circle cx="27" cy="27" r="5" fill="#ffc93c"/><circle cx="39" cy="39" r="5" fill="#ffc93c"/><circle cx="111" cy="27" r="5" fill="#7de8bd"/><circle cx="27" cy="111" r="5" fill="#8aa2ff"/><circle cx="39" cy="123" r="5" fill="#8aa2ff"/><circle cx="123" cy="123" r="5" fill="#ff8a80"/>
+<circle class="hop" cx="65" cy="31" r="4.5" fill="#7de8bd"/><circle cx="31" cy="85" r="4.5" fill="#ff8a80"/></g>
+</svg>
+<div class="rl"><span><i style="background:#ffc93c"></i>Ludo: classic, quick, 2v2</span><span><i style="background:#7de8bd"></i>Chess vs a robot</span><span><i style="background:#8aa2ff"></i>Twenty-Nine</span><span><i style="background:#ff8a80"></i>Dhaka Monopoly</span></div></div></div>
 </div></div></section>
 
 <section id="toolkit" data-io><div class="wrap cols"><h2><span class="hl">Toolkit</span></h2><div>
